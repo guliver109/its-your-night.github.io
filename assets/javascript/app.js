@@ -21,7 +21,7 @@ $(document).ready(function () {
                 var venueLatitude = response[i].venue.latitude;
                 var venueLongitude = response[i].venue.longitude;
                 var venueCity = response[i].venue.city;
-                var tickets = response[i].offers.url;
+                var tickets = response[i].offers[0].url;
                 var str = venueDateTime.split("T");
                 var venueDate = str[0];
                 var venueTime = str[1];
@@ -50,8 +50,17 @@ $(document).ready(function () {
                 var timeDiv = $("<div>").text(venueTime.slice(0,5));
                 var venueNameDiv = $("<div>").text(venueName);
                 var cityDiv = $("<div>").text(venueCity);
-                newDiv.append(dateDiv, timeDiv, venueNameDiv, cityDiv);
+                var ticketA = $("<a>").attr("href", tickets).attr("target", "_blank");
+                var ticketBtn = $("<button class='ticket-btn'>");
+                ticketBtn.text("Ticket");
+                var selectBtn = $("<button class='select-btn'>").attr("data-index", i);
+                selectBtn.text("Select");
+                ticketA.append(ticketBtn);
+                newDiv.append(selectBtn, ticketA, dateDiv, timeDiv, venueNameDiv, cityDiv);
                 $("#content-display").append(newDiv);
+                console.log(tickets);
+                
+
             };
             console.log(venues);
         });
@@ -66,4 +75,33 @@ $(document).ready(function () {
         searchBandsInTown(inputArtist);
     });
 
+    $(document).on("click", ".select-btn", function(){
+        var index = $(this).attr("data-index");
+        var latitude = venues[index].latitude;
+        var longitude = venues[index].longitude;
+        
+        $("#content-display").empty();
+
+        
+        var date = venues[index].date;
+        var time = venues[index].time;
+        var city = venues[index].city;
+        var name = venues[index].name;
+        var dateDiv = $("<div>");
+        var dateP = $("<p>");
+        var cleanDate = date.split("-");
+        dateP.append(cleanDate[0] + " ");
+        dateP.append(cleanDate[1] + " ");
+        dateP.append(cleanDate[2] + " ");
+        dateDiv.append(dateP);
+        var timeDiv = $("<div>").text(time.slice(0,5));
+        
+        var newDiv = $("<div>");
+      
+        newDiv.append(dateDiv, timeDiv, city, name);
+        $("#content-display").append(newDiv);
+        
+
+        findRestaurant(longitude, latitude);
+    });
 });
