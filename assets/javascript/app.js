@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    var locations =[];          //index 0: venue, index:1, restaurant
+
     var venues = [];
     function searchBandsInTown(artist) {
         console.log(artist) // replace " " with a "+", look into string methods
@@ -69,8 +71,12 @@ $(document).ready(function () {
 
    
     var foodArray = [];
-    function findRestaurant(longitude, latitude) {
-        var radius = 5 * 1600;
+    function findRestaurant(radius) {
+        radius = radius * 1600;
+        var latitude = location[0].latitude;
+        var longitude = location[0].longitude;
+
+        $("#radius-input").remove();
         $.ajax({
             url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&radius=${radius}`,
             method: "GET",
@@ -99,6 +105,7 @@ $(document).ready(function () {
                         price: p,
                         url: u
                     }
+                    foodArray.push(obj);
 
                     var newDiv = $("<div>");
                     var newTitle = $("<a>").attr("href", u).attr("target", "_blank").text(n);
@@ -114,7 +121,23 @@ $(document).ready(function () {
         });
     }
 
-    $(document).on("click", ".rest-btn", function() {
+    function getRadius() {
+        var newDiv = $("<div>").addClass("input-field").attr("id", "radius-input");
+        var lblDiv = $("<label>").attr("for", "radius").text("Enter Radius: ");
+        var inDiv = $("<input>").attr("placeholder", "Radius in Miles").attr("id", "radius")
+        .attr("type", "number").addClass("validate");
+        var btnDiv = $("<button>").attr("id", "select-radius");
+        
+        newDiv.append(inDiv, lblDiv, btnDiv);
+        $("#content-display").append(newDiv);
+    }
+
+    $(document).on("click", "select-radius", function() {
+        var userInput = $("#radius").val().trim();
+        findRestaurant(userInput);
+    })
+
+    $(document).on("click", ".rest-btn", function() {           //user selects restaurant
         // $("#content-display").empty();
 
         // var index = $(this).attr("data-index");
@@ -142,11 +165,11 @@ $(document).ready(function () {
 
     $(document).on("click", ".select-btn", function () {
         var index = $(this).attr("data-index");
-        var latitude = venues[index].latitude;
-        var longitude = venues[index].longitude;
+        locations.push(venues[index]);
+        // var latitude = venues[index].latitude;
+        // var longitude = venues[index].longitude;
 
         $("#content-display").empty();
-
 
         var date = venues[index].date;
         var time = venues[index].time;
@@ -166,7 +189,7 @@ $(document).ready(function () {
         newDiv.append(dateDiv, timeDiv, city, name);
         $("#content-display").append(newDiv);
 
-
-        findRestaurant(longitude, latitude);
+        getRadius();
+        // findRestaurant(longitude, latitude);
     });
 });
