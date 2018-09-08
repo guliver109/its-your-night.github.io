@@ -1,16 +1,34 @@
+html,
 body {
-    text-align: center;
+    /* text-align: left; */
 
     background: url("../images/concert\ 2.png") no-repeat fixed center;
 
-    background-size: cover; 
+    background-size: cover;
 
-    text-align: left;
-
-    color: #ffffff;
-
-
+    /* color: #ffffff; */
   }
 
+.row {
+    color: blueviolet;
 
-  }
+}
+
+.card-header {
+    color: teal;
+    font-size: 25px;
+    font-display: bold
+}
+.card {
+    color: teal;
+    font-size: 25px;
+    font-display: bold; 
+}
+
+#navTop {
+    color: rgb(0, 0, 0);
+}
+
+.nav-wrapper {
+    color: purple;
+}
