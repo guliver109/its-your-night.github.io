@@ -1,9 +1,15 @@
+$(".dropdown-disp").hide();
+
 $(document).ready(function () {
 
     var locations =[];          //index 0: venue, index:1, restaurant
-
+    var dropdownArray = [];     //array to populate dropdown menu of concert cities
+    
     var venues = [];
     function searchBandsInTown(artist) {
+        dropdownArray = []; 
+        venues = [];
+        $("#content-display").empty();
         console.log(artist) // replace " " with a "+", look into string methods
         artist = artist.replace(" ", "+");
 
@@ -48,38 +54,64 @@ $(document).ready(function () {
                     CityCountry: dropDownString
 
 
-                }; venues.push(venueInfo);
-                
+                }; venues.push(venueInfo);                
 
-                // console.log(dropDownString);
-
-
+                if(!(dropdownArray.includes(dropDownString))) {
+                    dropdownArray.push(dropDownString);
+                }
+                venueDisplay(i); 
 
             };
-            // console.log(venues);
-            
-
+            console.log(dropdownArray);
+            addToDropdown();
+            $(".dropdown-disp").show();
         });
 
-        console.log(venues);
-        
-        for (var i = 0; i < venues.length; i++) {
-            console.log("venue for-loop");
-           venueInfo(i); 
-        }
-        
-
     };
-    
 
+    function addToDropdown() {
+        for (var i = 0; i < dropdownArray.length; i++) {
+            var newOption = $("<option>").text(dropdownArray[i]);
+            $("#dropdown1").append(newOption);  
+        }
+        return;
+    }
+    
+    function venueDisplay(i) {
+
+        var cleanDate = venues[i].date.split("-");
+        // console.log(venueDate);
+        // console.log(venueTime);
+        var newDiv = $("<div>");
+        var dateDiv = $("<div>");
+        var dateP = $("<p>");
+        dateP.append(cleanDate[0] + " ");
+        dateP.append(cleanDate[1] + " ");
+        dateP.append(cleanDate[2] + " ");
+        dateDiv.append(dateP);
+
+        var timeDiv = $("<div>").text(venues[i].time.slice(0, 5));
+        var venueNameDiv = $("<div>").text(venues[i].name);
+        var cityDiv = $("<div>").text(venues[i].city);
+        var ticketA = $("<a>").attr("href", venues[i].ticket).attr("target", "_blank");
+        var ticketBtn = $("<button class='ticket-btn'>");
+        ticketBtn.text("Ticket");
+        var selectBtn = $("<button class='select-btn'>").attr("data-index", i);
+        selectBtn.text("Select");
+        ticketA.append(ticketBtn);
+        newDiv.append(selectBtn, ticketA, dateDiv, timeDiv, venueNameDiv, cityDiv);
+        $("#content-display").append(newDiv);
+        // console.log(tickets);
+        return;
+    };
  
 
     
     var foodArray = [];
     function findRestaurant(radius) {
         radius = radius * 1600;
-        var latitude = location[0].latitude;
-        var longitude = location[0].longitude;
+        var latitude = locations[0].latitude;
+        var longitude = locations[0].longitude;
 
         $("#radius-input").remove();
         $.ajax({
@@ -91,6 +123,8 @@ $(document).ready(function () {
             console.log(response);
 
             var data = response.businesses;
+            var newContentDiv = $("<div>").attr("id", "restaurant-div");
+            $("#content-display").append(newContentDiv);
 
             console.log(data);
 
@@ -119,41 +153,50 @@ $(document).ready(function () {
                     var newBtn = $("<button>").attr("data-index", i).text("Select").addClass("rest-btn");
 
                     newDiv.append(newTitle, newP, newBtn);
-                    $("#content-display").append(newDiv);
+                    $("#restaurant-div").append(newDiv);
                 };
 
             };
+
         });
     }
 
     function getRadius() {
         var newDiv = $("<div>").addClass("input-field").attr("id", "radius-input");
-        var lblDiv = $("<label>").attr("for", "radius").text("Enter Radius: ");
-        var inDiv = $("<input>").attr("placeholder", "Radius in Miles").attr("id", "radius")
+        var lblDiv = $("<label>").attr("for", "radius").text("Enter Radius in Miles: ");
+        var inDiv = $("<input>").attr("id", "radius")
         .attr("type", "number").addClass("validate");
-        var btnDiv = $("<button>").attr("id", "select-radius");
+        var btnDiv = $("<button>").attr("id", "select-radius").text("Show Results");
         
         newDiv.append(inDiv, lblDiv, btnDiv);
         $("#content-display").append(newDiv);
     }
 
-    $(document).on("click", "select-radius", function() {
+    //-------------------listener events--------------------------
+
+    $(document).on("click", "#select-radius", function() {          //click event when radius is selected
+        console.log("radius selected");
         var userInput = $("#radius").val().trim();
+        console.log(userInput);
         findRestaurant(userInput);
     })
 
-    $(document).on("click", ".rest-btn", function() {           //user selects restaurant
-        // $("#content-display").empty();
+    $(document).on("click", ".rest-btn", function() {               //user selects restaurant
+        var index = $(this).attr("data-index");
+        locations[1] = foodArray[index];
 
-        // var index = $(this).attr("data-index");
-
-        // var newDiv = $("<div>");
-        // var newp1 = $("<p>").text(foodArray[index].name);
-        // var newp2 = $("<p>").text(foodArray[index].long);
-        // var newp3 = $("<p>").text(foodArray[index].lat);
-
-        // newDiv.append(newp1, newp2, newp3);
-        // $("#content-display").append(newDiv);
+        $("#restaurant-div").remove();
+        
+        var newDiv = $("<div>");
+        
+        var newDiv = $("<div>");
+        var newTitle = $("<a>").attr("href", foodArray[index].url).attr("target", "_blank")
+        .text(foodArray[index].name);
+        var newP = $("<p>").text(foodArray[index].price);
+        var newBtn1 = $("<button>").text("Get Directions").addClass("getDirections-btn");
+        var newBtn2 = $("<button>").text("Change Destinations").addClass("changeDest-btn");
+        newDiv.append(newTitle, newP, newBtn1, newBtn2);
+        $("#content-display").append(newDiv);
     });
 
 
@@ -170,7 +213,8 @@ $(document).ready(function () {
 
     $(document).on("click", ".select-btn", function () {
         var index = $(this).attr("data-index");
-        locations.push(venues[index]);
+        locations = [];
+        locations[0] = venues[index];
         // var latitude = venues[index].latitude;
         // var longitude = venues[index].longitude;
 
@@ -195,164 +239,136 @@ $(document).ready(function () {
         $("#content-display").append(newDiv);
 
         getRadius();
-        // findRestaurant(longitude, latitude);
     });
 
-    function bandFilter(userIndex) {
-        var userChoice = venues[userIndex].CityCountry;
-
-        // for (var i = 0; i < venues.length; i++) {
-        //     if (venues[i].CityCountry === userChoice)
-        // }
-
-
+    function bandFilter(userChoice) {
+        $("#content-display").empty();
+        for (var i = 0; i < venues.length; i++) {
+            if (venues[i].CityCountry === userChoice) {
+                venueDisplay(i);
+            }
+        }
     }
-    $(document).on("click", ".country-btn", function () {
 
-        var index = $(this).attr("data-index");
-        bandFilter(index);
-
+    $("#dropdown1").change(function(){
+        var citySelected = $("#dropdown1 :selected").text();
+        // console.log(citySelected);
+        bandFilter(citySelected);
     });
-    function venueInfo(i) {
-        var cleanDate = venues[i].date.split("-");
-            console.log("function accessed");
-        // console.log(venueDate);
-        // console.log(venueTime);
-        var newDiv = $("<div>");
-        var dateDiv = $("<div>");
-        var dateP = $("<p>");
-        dateP.append(cleanDate[0] + " ");
-        dateP.append(cleanDate[1] + " ");
-        dateP.append(cleanDate[2] + " ");
-        dateDiv.append(dateP);
+   
 
-        var timeDiv = $("<div>").text(venues[i].time.slice(0, 5));
-        var venueNameDiv = $("<div>").text(venues[i].name);
-        var cityDiv = $("<div>").text(venues[i].city);
-        var ticketA = $("<a>").attr("href", venues[i].ticket).attr("target", "_blank");
-        var ticketBtn = $("<button class='ticket-btn'>");
-        ticketBtn.text("Ticket");
-        var selectBtn = $("<button class='select-btn'>").attr("data-index", i);
-        selectBtn.text("Select");
-        ticketA.append(ticketBtn);
-        newDiv.append(selectBtn, ticketA, dateDiv, timeDiv, venueNameDiv, cityDiv);
-        $("#content-display").append(newDiv);
-        // console.log(tickets);
-        return;
-    };
-});
-//add data-index to drop down options
-
-});
 
 
 //----------------------Google maps--------------------------//
 
  //variable declaration
- var directionDisplay, map;
- var directionsService = new google.maps.DirectionsService();
- var geocoder = new google.maps.Geocoder()
+//  var directionDisplay, map;
+//  var directionsService = new google.maps.DirectionsService();
+//  var geocoder = new google.maps.Geocoder()
  
  //initializing function
- function initialize() {
-     // set the default center of the map
-       var latlng = new google.maps.LatLng(34.052235,-118.243683);
-       // set route options
-       var rendererOptions = { draggable: true };//draggable means you can alter/drag the route in the map
-       directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
-       //display options for the map
-       var myOptions = {
-             zoom: 10,
-             center: latlng,
-             mapTypeId: google.maps.MapTypeId.ROADMAP,
-             mapTypeControl: false
-       };
-       // adding the map to the map placeholder
-       map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
-       // sticking the map to the directions
-       directionsDisplay.setMap(map);
-       //directions to the container for the direction details
-       directionsDisplay.setPanel(document.getElementById("directionsPanel"));
-       //geolocation API
-       if (navigator.geolocation) {
-             // when geolocation is available on your device, run this function
-             navigator.geolocation.getCurrentPosition(found, notFound);
-       } else {
-             // when no geolocation is available, alert this message
-             alert("Geolocation not supported or not enabled.");
-       }
- }
- function notFound(msg) {  
-     alert("Could not find your location")
- }
- function found(position) {
- // convert the position returned by the geolocation API to a google coordinate object
- var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
- // then try to reverse geocode the location to return a human-readable address
- geocoder.geocode({"latLng": latlng}, function(results, status) {
-     if (status == google.maps.GeocoderStatus.OK) {
-     // if the geolocation was recognized and an address was found
-     if (results[0]) {
-     // add a marker to the map on the geolocated point
-       marker = new google.maps.Marker({
-       position: latlng,
-       map: map
-     });
- //string with the address parts
- var address = 
- results[0].address_components[1].long_name+' '
- +results[0].address_components[0].long_name+', '+results[0].address_components[3].long_name
- // set the located address to the link, show the link and add a click event handler
- $(".autoLink span").html(address).parent().show().click(function(){
- // onclick, set the geocoded address to the start-point formfield
- $("#routeStart").val(address);
- // call the calcRoute function to start calculating the route
- calcRoute();
- });
-}
- } else {
- // if the address couldn't be determined, alert and error with the status message
- alert("Geocoder failed due to: " + status);
-}
+//  function initialize() {
+//      // set the default center of the map
+//        var latlng = new google.maps.LatLng(34.052235,-118.243683);
+//        // set route options
+//        var rendererOptions = { draggable: true };//draggable means you can alter/drag the route in the map
+//        directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+//        //display options for the map
+//        var myOptions = {
+//              zoom: 10,
+//              center: latlng,
+//              mapTypeId: google.maps.MapTypeId.ROADMAP,
+//              mapTypeControl: false
+//        };
+//        // adding the map to the map placeholder
+//        map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+//        // sticking the map to the directions
+//        directionsDisplay.setMap(map);
+//        //directions to the container for the direction details
+//        directionsDisplay.setPanel(document.getElementById("directionsPanel"));
+//        //geolocation API
+//        if (navigator.geolocation) {
+//              // when geolocation is available on your device, run this function
+//              navigator.geolocation.getCurrentPosition(found, notFound);
+//        } else {
+//              // when no geolocation is available, alert this message
+//              alert("Geolocation not supported or not enabled.");
+//        }
+//  }
+//  function notFound(msg) {  
+//      alert("Could not find your location")
+//  }
+//  function found(position) {
+//  // convert the position returned by the geolocation API to a google coordinate object
+//  var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+//  // then try to reverse geocode the location to return a human-readable address
+//  geocoder.geocode({"latLng": latlng}, function(results, status) {
+//      if (status == google.maps.GeocoderStatus.OK) {
+//      // if the geolocation was recognized and an address was found
+//      if (results[0]) {
+//      // add a marker to the map on the geolocated point
+//        marker = new google.maps.Marker({
+//        position: latlng,
+//        map: map
+//      });
+//  //string with the address parts
+//  var address = 
+//  results[0].address_components[1].long_name+' '
+//  +results[0].address_components[0].long_name+', '+results[0].address_components[3].long_name
+//  // set the located address to the link, show the link and add a click event handler
+//  $(".autoLink span").html(address).parent().show().click(function(){
+//  // onclick, set the geocoded address to the start-point formfield
+//  $("#routeStart").val(address);
+//  // call the calcRoute function to start calculating the route
+//  calcRoute();
+//  });
+// }
+//  } else {
+//  // if the address couldn't be determined, alert and error with the status message
+//  alert("Geocoder failed due to: " + status);
+// }
+// });
+// }
+// function calcRoute() {
+// // get the travelmode, startpoint and via point   
+// var travelMode = $('input[name="travelMode"]:checked').val();
+// var start = $("#routeStart").val();
+// var end = $("#routeEnd").val();
+// //array with options for the directions/route request
+// var request = {
+//  origin: start,
+//  destination: end,
+//  unitSystem: google.maps.UnitSystem.IMPERIAL,
+//  travelMode: google.maps.DirectionsTravelMode[travelMode]
+// };
+// //the directions
+// directionsService.route(request, function(response, status) {
+//  if (status == google.maps.DirectionsStatus.OK) {
+//  // directions returned by the API, clear the directions panel before adding new directions
+//  $("#directionsPanel").empty();
+//  // display the direction details in the container
+//  directionsDisplay.setDirections(response);
+//  } else {
+//  // when the route could not be calculated./alert is a must
+//  if (status == 'ZERO_RESULTS') {
+//    alert('No route could be found between the origin and destination.');
+//  } else if (status == 'UNKNOWN_ERROR') {
+//    alert('A directions request could not be processed due to a server error. The request may succeed if you try again.');
+//  } else if (status == 'REQUEST_DENIED') {
+//    alert('This webpage is not allowed to use the directions service.');
+//  } else if (status == 'OVER_QUERY_LIMIT') {
+//    alert('The webpage has gone over the requests limit in too short a period of time.');
+//  } else if (status == 'NOT_FOUND') {
+//    alert('At least one of the origin, destination, or waypoints could not be geocoded.');
+//  } else if (status == 'INVALID_REQUEST') {
+//    alert('The DirectionsRequest provided was invalid.');         
+//  } else {
+//    alert("There was an unknown error in your request. Requeststatus: nn"+status);
+// }
+// }
+// });
+// }
+
+
 });
-}
-function calcRoute() {
-// get the travelmode, startpoint and via point   
-var travelMode = $('input[name="travelMode"]:checked').val();
-var start = $("#routeStart").val();
-var end = $("#routeEnd").val();
-//array with options for the directions/route request
-var request = {
- origin: start,
- destination: end,
- unitSystem: google.maps.UnitSystem.IMPERIAL,
- travelMode: google.maps.DirectionsTravelMode[travelMode]
-};
-//the directions
-directionsService.route(request, function(response, status) {
- if (status == google.maps.DirectionsStatus.OK) {
- // directions returned by the API, clear the directions panel before adding new directions
- $("#directionsPanel").empty();
- // display the direction details in the container
- directionsDisplay.setDirections(response);
- } else {
- // when the route could not be calculated./alert is a must
- if (status == 'ZERO_RESULTS') {
-   alert('No route could be found between the origin and destination.');
- } else if (status == 'UNKNOWN_ERROR') {
-   alert('A directions request could not be processed due to a server error. The request may succeed if you try again.');
- } else if (status == 'REQUEST_DENIED') {
-   alert('This webpage is not allowed to use the directions service.');
- } else if (status == 'OVER_QUERY_LIMIT') {
-   alert('The webpage has gone over the requests limit in too short a period of time.');
- } else if (status == 'NOT_FOUND') {
-   alert('At least one of the origin, destination, or waypoints could not be geocoded.');
- } else if (status == 'INVALID_REQUEST') {
-   alert('The DirectionsRequest provided was invalid.');         
- } else {
-   alert("There was an unknown error in your request. Requeststatus: nn"+status);
-}
-}
-});
-}
 
