@@ -29,7 +29,8 @@ body {
 }
 
 #left-card {
-    height: 121.5px;
+    height: 146px;
+    padding-top: 25px;
 }
 
 #navTop {
@@ -49,7 +50,7 @@ body {
 }
 
 .card-content {
-    padding: 0px 24px 24px 24px !important;
+    padding: 24px 24px 24px 24px !important;
 }
 
 #right-column {
@@ -60,10 +61,6 @@ body {
     height: 25px;
 }
 
-#location-input {
-    height: 25px;
-}
-
 #search-btn {
     margin-top: 13px;
     height: 25px;
@@ -71,10 +68,15 @@ body {
 
 .input-field {
     width: 30% !important;
+    margin-top: 15px;
+}
+
+#search-field {
     display: flex;
-    justify-content: center;
-    flex-flow: column wrap;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
     align-items: flex-end;
+    font-size: 18px;
 }
 
 form {
