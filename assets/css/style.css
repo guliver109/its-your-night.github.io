@@ -1,24 +1,85 @@
 
 body {
-    text-align: center;
 
     background: url("../images/concert\ 2.png") no-repeat fixed center;
 
-    background-size: cover; 
-
-
-    color: #ffffff;
-
-  }
+    background-size: cover;
 
     text-align: left;
 
     color: #ffffff;
-
-
   }
 
+#left-col {
+    height: 200px;
+}
 
-  }
 
+.card-header {
+    color: teal;
+    font-size: 25px;
+    font-display: bold
+}
 
+.card {
+    color: teal;
+    font-size: 25px;
+    font-display: bold; 
+    margin-bottom: 0px;
+}
+
+#left-card {
+    height: 146px;
+    padding-top: 25px;
+}
+
+#navTop {
+    color: white;
+}
+
+.nav-wrapper {
+    background-color: purple;
+}
+
+.input-field {
+    position: fixed; 
+}
+
+.card-action {
+    padding: 0px 24px !important;
+}
+
+.card-content {
+    padding: 24px 24px 24px 24px !important;
+}
+
+#right-column {
+    margin-top: 15px
+}
+
+#artist-input {
+    height: 25px;
+}
+
+#search-btn {
+    margin-top: 13px;
+    height: 25px;
+}
+
+.input-field {
+    width: 30% !important;
+    margin-top: 15px;
+}
+
+#search-field {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    align-items: flex-end;
+    font-size: 18px;
+}
+
+form {
+    height: 200px;
+    width: 100%;
+}
