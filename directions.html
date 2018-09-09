@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Directions</title>
+
+     <!----------------- MATERIALIZE --------------------------->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+  <!-- -----------------JAVASCRIPT ----------------------------->
+
+
+  <script defer src="./assets/javascript/app.js"></script>
+
+
+  <!-- -----------------J QUERY -------------------------------->
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <!----------------GOOGLE FONTS -------------------------------->
+
+  <link href="https://fonts.googleapis.com/css?family=Geo" rel="stylesheet" type="text/css">
+
+  <!-------------- CSS -------------------------------------->
+
+  <link rel="stylesheet" href="./assets/css/style.css">
+  
+  <!----------------GOOGLE MAPS -------------------------------->
+   <!--jquery-->
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+   <!--google map api-->
+   <script src="http://maps.google.com/maps/api/js?key=AIzaSyCVg7w_mohqdu3aS4yQWvgQELczpbIsXmw"></script>
+</head>
+
+<body>
+    <!--output/this part is for materialize-->
+  <!--I've stripped out all unnecessary styling to keep things simple-->
+  <div id="map_canvas" style="width:100%; height:300px"></div><!--css maybe-->
+  <form action="#" onSubmit="calcRoute();return false;" id="routeForm">
+      <label>
+          From: <br />
+            <input type="text" id="routeStart" value="From">
+                  <a href="#" class="autoLink" style="display: none;">Or: Use current location: <span>not found</span></a>
+          </label>
+                <label>
+                  <br>
+            <input type="text" id="routeEnd" value="To">
+          </label>
+          <label><input type="radio" name="travelMode" value="DRIVING" checked /> Driving</label>
+          <label><input type="radio" name="travelMode" value="BICYCLING" /> Bicylcing</label>
+          <label><input type="radio" name="travelMode" value="TRANSIT" /> Public transport</label>
+          <label><input type="radio" name="travelMode" value="WALKING" /> Walking</label>
+          <div class="place-types">
+              <input class="with-gap" name="type" type="radio" id="restaurant" value="restaurant" />
+              <label for="restaurant">Restaurant</label>
+          </div>
+          <div class="place-types">
+              <input class="with-gap" name="type" type="radio" id="ds"  value="department_store" />
+              <label for="ds">Department Store</label>
+          </div>
+          
+          <input type="submit" value="Show route">
+        </form>
+        <!--container to display the direction details-->
+        <div id="directionsPanel">
+              Enter a starting point and click "Show route".
+      </div>
+      <!--initialization code is executed-->
+      <body onLoad="initialize()"></body>
+    
+</body>
+</html>

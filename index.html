@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -31,6 +32,7 @@
   <!-------------- CSS -------------------------------------->
 
   <link rel="stylesheet" href="./assets/css/style.css">
+
 </head>
 
 <body>
@@ -42,66 +44,48 @@
 
   <!-- Page Layout here -->
 
-  <div class="container">
+  <div class="container-fluid">
 
 
     <div class="row">
-      <div class="col s4 m4">
-        <div class="card teal">
-          <div class="card-content white-text">
-            <span class="card-title">Artist Search</span></div>
+      <div id="left-col" class="col s4 m4">
 
-          <div class="card-action">
-            <form>
-              <div class="input-field">
-                <input id="artist-input" type="artist search" required>
-                <label class="label-icon" for="search"><i class="material-icons"></i></label>
+        <form>
+          <div class="input-field">
+            <div class="card teal" id="left-card">
+              <div class="card-content white-text">
+              <div id="input-field">                
+                <input id="artist-input" type="artist search" required value="artist">
+                <input id="location-input" type="location search" value="city, st, zip"><br/>
                 <i class="material-icons"></i>
-                <button id="search-btn">Search</button>
-             </div>
-            </form>
-
-            <div class="col s8 m8">
-                <div class="search results" id="content-display">
-            </div>
-
+                <button id="search-btn">submit</button>
+              </div>
+              </div>
             </div>
           </div>
+        </form>
+
+      </div>
+      <div class="col s8 m8" id="right-column">
+        <div class="card teal">
+          <div class="card-content white-text">
+            <div class="search results" id="content-display">
+
+            <div class="card-action"><span class="card-title">Search Results</span></div>
+            </div>
+
+
+
+          </div>
         </div>
-    
-   </div>
+      </div>
 
-  
+    </div>
 
-              <form>
-                <div class="input-field">
 
-                  <input id="artist-input" type="artist search"  required>
-                  <label class="label-icon" for="search"><i class="material-icons"></i></label>
-                  <i class="material-icons">close</i>
-                  <button id="search-btn">Search</button>
+    <!----------------------------- BUTTONS FOR TOP OF PAGE ------------------------------------ -->
 
-                  <input id="artist-input" type="artist search" required>
-                  <label class="label-icon" for="search"><i class="material-icons"></i></label>
-                  <i class="material-icons">close</i>
-                  <button id="search-btn">search</button>
- 
-                </div>
-              </form>
-
-              <div class="row" id="content-display">
-
-            
-           </div>
-  
-              <div class="row" id='content-display'>
-              
-             </div>
-          
-
-      <!----------------------------- BUTTONS FOR TOP OF PAGE ------------------------------------ -->
-
-            <!-- <button class="btn waves-effect waves-light" type="Artist Search" name="action">Artist Search
+    <!-- <button class="btn waves-effect waves-light" type="Artist Search" name="action">Artist Search
               </button>
 
               <a class="waves-effect waves-light btn">Artist Name</a>
@@ -109,15 +93,17 @@
               <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>City, State Zip</a>
 
      -->
-<!-- Page Content goes here -->
-      </div>
+    <!-- Page Content goes here -->
+  </div>
 
 
-    </div>
+  </div>
 
 
   <!-- Page Content goes here -->
+  </div>
 
 </body>
+
 
 </html>
