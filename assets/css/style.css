@@ -90,3 +90,7 @@ form {
 #restaurant-distance {
     color: white;
 }
+
+#restaurant-card {
+    visibility: hidden;
+}
