@@ -88,11 +88,12 @@ $(document).ready(function () {
         var cleanDate = venues[i].date.split("-");
         // console.log(venueDate);
         // console.log(venueTime);
-        var newDiv = $("<div>");
+        //This div represents the venue box
+        var newDiv = $("<div class='venue-box'>");
         var dateDiv = $("<div>");
         var dateP = $("<p>");
-        dateP.append(cleanDate[0] + " ");
-        dateP.append(cleanDate[1] + " ");
+        dateP.append(cleanDate[0] + "/");
+        dateP.append(cleanDate[1] + "/");
         dateP.append(cleanDate[2] + " ");
         dateDiv.append(dateP);
 
@@ -105,8 +106,9 @@ $(document).ready(function () {
         var selectBtn = $("<button class='select-btn'>").attr("data-index", i);
         selectBtn.text("Select");
         ticketA.append(ticketBtn);
-        newDiv.append(selectBtn, ticketA, dateDiv, timeDiv, venueNameDiv, cityDiv);
+        newDiv.append(venueNameDiv, cityDiv, timeDiv, dateDiv, selectBtn, ticketA);
         $("#content-display").append(newDiv);
+        $("#left-card").css("opacity", "0.3");
         // console.log(tickets);
         return;
     };

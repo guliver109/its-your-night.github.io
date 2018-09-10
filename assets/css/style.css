@@ -10,6 +10,14 @@ body {
     color: #ffffff;
   }
 
+  .select-btn , .ticket-btn {
+      margin: 5px;
+  }
+
+  button {
+      border-radius: 5px;
+  }
+
 #left-col {
     height: 200px;
 }
@@ -32,8 +40,12 @@ body {
     background-color: #e42971; 
 }
 
+#content-display{
+    text-align: center;
+    
+}
 #right-card {
-    background-color: #26c6da;
+    background-color: rgb(107, 238, 247, 0.5);
 }
 
 #navTop {
@@ -89,4 +101,19 @@ form {
 
 #restaurant-distance {
     color: white;
+}
+
+.venue-box {
+    background-color: rgb(78, 78, 255, 0.5);
+    margin: 5px;
+    text-align: center;
+    width: 30%;
+    display: inline-block;
+
+    /* border: solid black 5px; */
+    border-radius: 5px;
+}
+
+#restaurant-card {
+    visibility: hidden;
 }
