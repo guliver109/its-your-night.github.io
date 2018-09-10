@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    //retrieving coordinates from localStorage
+
         //  variable declaration
     var directionDisplay, map;
     var directionsService = new google.maps.DirectionsService();
