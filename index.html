@@ -29,14 +29,20 @@
 
   <link href="https://fonts.googleapis.com/css?family=Geo" rel="stylesheet" type="text/css">
 
+
+  <!-----------------------GOOGLE FOR NEON BUTTON ----------------- -->
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+
   <!-------------- CSS -------------------------------------->
 
   <link rel="stylesheet" href="./assets/css/style.css">
 
 <body>
 
-    <div class="stars"></div>
-    <div class="twinkling"></div>
+  <div class="stars"></div>
+  <div class="twinkling"></div>
 
   <nav>
     <div class="nav-wrapper">
@@ -45,18 +51,21 @@
   </nav>
 
   <!-- Page Layout here -->
-  
+
 
   <div class="container-fluid">
 
 
     <div class="row">
       <div id="left-col" class="col s4 m4">
-
+       
         <form>
           <div class="input-field">
             <div class="card" id="left-card">
               <div class="card-content white-text">
+                  <div id="neon-button">
+                      <h1>Artist Search<span class="first"></span></h1>
+                    </div>
                 <div id="search-field">
                   <input id="artist-input" type="artist search" placeholder="Artist">
                   <i class="material-icons"></i>
@@ -71,9 +80,11 @@
       <div class="col s8 m8" id="right-column">
         <div id="right-card" class="card">
           <div class="card-content white-text">
+
             <select id="dropdown1" class="browser-default dropdown-disp">
               <option class="dropdown-disp" value="pick a city" selected>Select city</option>
-            </select><br/>
+            </select><br />
+
 
             <div class="row" id="content-display">
 
@@ -83,8 +94,22 @@
       </div>
       </div>
       <div class="row">
-          <div id="left-col" class="col s4 m4">
-          </div>
+        <div id="left-col" class="col s4 m4">
+        </div>
+
+        <div class="col s8 m8" id="right-column">
+          <div id="restaurant-card" class="card">
+            <div class="card-content white-text">
+
+              <div class="restaurant-search" id="search-title">
+                <!-- <div class="card-action"><span class="card-title">Restaurant Distance</span></div> -->
+              </div>
+              <select id="dropdown1" class="browser-default dropdown-disp">
+                <option class="dropdown-disp" value="pick a city" selected>select city</option>
+              </select><br />
+
+              <div class="row" id="content-display">
+
 
           <div class="col s8 m8" id="right-column">
               <div id="restaurant-card" class="card">
@@ -100,7 +125,7 @@
                 </div>
               </div>
             </div>
-      
+  
 
     </div>
 
