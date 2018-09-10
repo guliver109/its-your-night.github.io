@@ -16,13 +16,11 @@ body {
 
 
 .card-header {
-    color: teal;
     font-size: 25px;
     font-display: bold
 }
 
 .card {
-    color: teal;
     font-size: 25px;
     font-display: bold; 
     margin-bottom: 0px;
@@ -31,6 +29,11 @@ body {
 #left-card {
     height: 146px;
     padding-top: 25px;
+    background-color: #e42971; 
+}
+
+#right-card {
+    background-color: #26c6da;
 }
 
 #navTop {
@@ -38,7 +41,7 @@ body {
 }
 
 .nav-wrapper {
-    background-color: purple;
+    background-color: #e42971;
 }
 
 .input-field {
@@ -82,4 +85,8 @@ body {
 form {
     height: 200px;
     width: 100%;
+}
+
+#restaurant-distance {
+    color: white;
 }

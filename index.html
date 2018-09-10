@@ -38,7 +38,7 @@
 <body>
   <nav>
     <div class="nav-wrapper">
-      <a class="brand-logo" id="navTop">Date Night</a>
+      <a class="brand-logo" id="navTop">It's Your Night!</a>
     </div>
   </nav>
 
@@ -52,10 +52,10 @@
 
         <form>
           <div class="input-field">
-            <div class="card teal" id="left-card">
+            <div class="card" id="left-card">
               <div class="card-content white-text">
                 <div id="search-field">
-                  <input id="artist-input" type="artist search" required value="artist">
+                  <input id="artist-input" type="artist search" placeholder="Artist">
                   <i class="material-icons"></i>
                   <button id="search-btn">submit</button>
                 </div>
@@ -66,15 +66,14 @@
 
       </div>
       <div class="col s8 m8" id="right-column">
-        <div id="right-card" class="card teal">
+        <div id="right-card" class="card">
           <div class="card-content white-text">
-            <div class="search-results" id="content-display">
+            <div class="search-results" id="search-title">
               <div class="card-action"><span class="card-title">Search Results</span></div>
             </div>
-            <label class="dropdown-disp">Select City</label>
-            <select id="dropdown1" class="browser-default dropdown-disp"></select><br />
-            <option class="dropdown-disp" value="pick a city" selected>City, Country</option>
-            </select>
+            <select id="dropdown1" class="browser-default dropdown-disp">
+            <option class="dropdown-disp" value="pick a city" selected>select city</option>
+            </select><br/>
             <div class="row" id="content-display">
 
             </div>

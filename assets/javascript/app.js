@@ -161,9 +161,11 @@ $(document).ready(function () {
         });
     }
 
+
     function getRadius() {
+
         var newDiv = $("<div>").addClass("input-field").attr("id", "radius-input");
-        var lblDiv = $("<label>").attr("for", "radius").text("Enter Radius in Miles: ");
+        var lblDiv = $("<label>").attr("for", "radius").text("Restaurant Distance:").attr("id", "restaurant-distance")
         var inDiv = $("<input>").attr("id", "radius")
         .attr("type", "number").addClass("validate");
         var btnDiv = $("<button>").attr("id", "select-radius").text("Show Results");
