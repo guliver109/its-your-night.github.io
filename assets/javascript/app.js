@@ -24,7 +24,7 @@ $(document).ready(function () {
             // Printing the entire object to console
             // console.log(response);
             if(response.length === 0) {
-                var newP = $("<p>").text("No events found for this artist.")
+                var newP = $("<p>").text("Artist not currently touring.")
                 $("#content-display").append(newP);
             }
             else{
