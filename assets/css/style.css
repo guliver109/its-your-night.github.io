@@ -198,8 +198,9 @@ form {
     border-radius: 5px;
 }
 
-/* #restaurant-card {
+#restaurant-card {
     visibility: hidden;
+}
 
 #neon-button {
     position: absolute;
@@ -418,4 +419,3 @@ form {
       0 0 12px -1px rgb(0, 180, 230) inset;
     }
   }
-

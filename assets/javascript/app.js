@@ -1,5 +1,4 @@
 $(".dropdown-disp").hide();
-$("#restaurant-card").hide();
 
 $(document).ready(function () {
 
@@ -178,14 +177,15 @@ $(document).ready(function () {
 
 
     function getRadius() {
-        $("#restaurant-card").show();
-        // var selectDiv = $("<select>").attr("id", "dropdown2").addClass("browser-default dropdown-disp");
-        // var newOption1 = $("<option>").addClass("dropdown-disp").attr("selected", "selected").text("Restaurant Distance");
+        var selectDiv = $("<select>").attr("id", "dropdown2").addClass("browser-default dropdown-disp");
+        var newOption1 = $("<option>").addClass("dropdown-disp").attr("selected", "selected").text("Restaurant Distance");
         var newOption2 = $("<option>").addClass("dropdown-disp").text("1");
         var newOption3 = $("<option>").addClass("dropdown-disp").text("5");
         var newOption4 = $("<option>").addClass("dropdown-disp").text("10");
 
-        $("#dropdown2").append(newOption2, newOption3, newOption4);  
+        selectDiv.append(newOption1, newOption2, newOption3, newOption4);  
+
+        $(".restaurant-search").append(selectDiv);
     }
 
 
@@ -205,9 +205,9 @@ $(document).ready(function () {
     //---------------------LISTENER EVENTS--------------------------
     //--------------------------------------------------------------
 
-    $(document).change("dropdown2", function(){        //click event when radius is selected
+    $(document).on("click", "#select-radius", function() {          //click event when radius is selected
         console.log("radius selected");
-        userRadius = $("#dropdown2 :selected").text();
+        userRadius = $("#radius").val().trim();
         userRadius = parseInt(userRadius);
         findRestaurant();
     })
