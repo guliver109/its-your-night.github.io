@@ -1,4 +1,15 @@
-        //variable declaration
+$(document).ready(function() {
+    //retrieving coordinates from localStorage
+    var coord = localStorage.getItem("coordinates");
+    var coordArray = JSON.parse(coord);
+    console.log(coordArray);
+
+    var venueLat = coordArray[0].latitude;
+    var venueLong = coordArray[0].longitude;
+    var restLat = coordArray[1].latitude;
+    var restLong = coordArray[1].longitude;
+
+     //variable declaration
         var directionDisplay, map;
         var directionsService = new google.maps.DirectionsService();
         var geocoder = new google.maps.Geocoder()
@@ -126,3 +137,5 @@ function calcRoute() {
     }
   });
 }
+})
+
