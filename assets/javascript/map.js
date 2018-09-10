@@ -1,17 +1,38 @@
 $(document).ready(function() {
 
+  var placesObject = {}
+  placesObject.latlng;
+  placesObject.myOptions = {
+    zoom: 10,
+    center: this.latlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: false
+  };
+// adding the map to the map placeholder
+  placesObject.map = new google.maps.Map(document.getElementById("map_canvas"),placesObject.myOptions);
+
   initialize();
     //retrieving coordinates from localStorage
-    var coord = localStorage.getItem("coordinates");
-    var coordArray = JSON.parse(coord);
-    console.log(coordArray);
-
-    var venueLat = coordArray[0].latitude;
-    var venueLong = coordArray[0].longitude;
-    var restLat = coordArray[1].latitude;
-    var restLong = coordArray[1].longitude;
-    console.log(venueLat);console.log(venueLong);console.log(restLat);console.log(restLong);
-
+    // var coord = localStorage.getItem("coordinates");
+    // console.log(coord);
+    // var coordArray = JSON.parse(coord);
+   
+    var coordArray = [ //array of objects
+      // current location coords
+      {
+        
+      },
+      // restaurant coords
+    {
+      latitude: 118.623,//find the real one
+      longitude: 101.23
+    },
+    // venue coords
+    {
+      latitude: 145.623,
+      longitude: 154.23
+    }
+  ]
      //variable declaration
         var directionDisplay, map;
         var directionsService = new google.maps.DirectionsService();
@@ -27,7 +48,7 @@ $(document).ready(function() {
               //display options for the map
               var myOptions = {
                     zoom: 10,
-                    center: latlng,
+                    center: placesObject.latlng,
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                     mapTypeControl: false
               };
@@ -50,17 +71,57 @@ $(document).ready(function() {
             alert("Could not find your location")
         }
         function found(position) {
+
+
+          //should be start-restaurant-venue-home
+          //venue
+          coordArray[0].latitude = position.coords.latitude;
+          coordArray[0].longitude = position.coords.longitude;
+
+
+          placesObject.currentPositionLatitude = coordArray[0].latitude;
+          placesObject.currentPositionLongitude = coordArray[0].longitude;
+          placesObject.restLat = coordArray[1].latitude;
+          placesObject.restLong = coordArray[1].longitude;
+          placesObject.venueLat = coordArray[2].latitude;//
+          placesObject.venueLong = coordArray[2].longitude;
+          placesObject.googleCurrentPosition = function(){
+            placesObject.latlng = new google.maps.LatLng(this.currentPositionLatitude, this.currentPositionLongitude);
+            return new google.maps.Marker({
+              position: placesObject.latlng,
+              map
+            });
+          }
+          placesObject.googleVenue = function(){
+            placesObject.latlng = new google.maps.LatLng(this.venueLat, this.venueLong);
+            return new google.maps.Marker({
+              position: placesObject.latlng,
+              map
+            });
+          }
+          placesObject.googleRestaurant = function(){
+            placesObject.latlng = new google.maps.LatLng(this.restLat, this.restLong);
+            return new google.maps.Marker({
+              position: placesObject.latlng,
+              map
+            });
+          }
+          placesObject.googleCurrentPosition();
+          placesObject.googleVenue();
+          placesObject.googleRestaurant();
+
+          console.log(placesObject);
         // convert the position returned by the geolocation API to a google coordinate object
         var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         // then try to reverse geocode the location to return a human-readable address
         geocoder.geocode({"latLng": latlng}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
+            if (status === google.maps.GeocoderStatus.OK) {
             // if the geolocation was recognized and an address was found
             if (results[0]) {
             // add a marker to the map on the geolocated point
               marker = new google.maps.Marker({
               position: latlng,
-              map: map
+              map: placesObject.map
             });
         //string with the address parts
         var address = 
@@ -95,19 +156,19 @@ function calcRoute() {
   // restaurants adresses and marker creating
   $(".button").on("click",function() {
     var locations = [];//array for latLng for restaurants
-    console.log(locations);
+    console.log(locations)
     var marker, i;
     //loop for taking location and printing them into map
     for (i = 0; i < locations.length; i++) { 
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
+        map: placesObject.map
       });
     //creating marker for every restaurant in array
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
           infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
+          infowindow.open(placesObject.map, marker);
         }
       })(marker, i));
     }
