@@ -198,10 +198,6 @@ form {
     border-radius: 5px;
 }
 
-#restaurant-card {
-    visibility: hidden;
-}
-
 #neon-button {
     position: absolute;
     top: 50%;
