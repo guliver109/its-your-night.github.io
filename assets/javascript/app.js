@@ -226,7 +226,7 @@ $(document).ready(function () {
         .text(foodArray[index].name);
         var newP = $("<p>").text(foodArray[index].price);
         var newBtn1 = $("<button>").text("Get Directions");
-        var newA1 = $("<a>").attr("href", "directions.html");
+        var newA1 = $("<a>").attr("href", "directions.html").attr("id", "go-to-map");
         var newBtn2 = $("<button>").text("Go Back").attr("id", "goBack-btn");
         newA1.append(newBtn1);
         newDiv.append(newTitle, newP, newA1, newBtn2);
@@ -286,7 +286,7 @@ $(document).ready(function () {
     });
 
 
-    $(document).on("click", "#goBack-btn", function() {
+    $(document).on("click", "#goBack-btn", function() {                 //goes back to restaurant list
         $("#chosenRest-div").remove();
         var newContentDiv = $("<div>").attr("id", "restaurant-div");
         $("#content-display").append(newContentDiv);
@@ -294,6 +294,11 @@ $(document).ready(function () {
         for(var i = 0; i < foodArray.length; i++) {
             RestaurantDisplay(i);
         }
+    });
+
+    $(document).on("click", "#go-to-map", function() {                  //goes to direction html
+        localStorage.setItem("coordinates", JSON.stringify(locations));
+        console.log(JSON.stringify(locations));
     });
 
 
