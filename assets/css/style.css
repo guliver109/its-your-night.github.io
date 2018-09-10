@@ -29,7 +29,9 @@ body {
 #left-card {
     height: 146px;
     padding-top: 25px;
-    background-color: #e42971; 
+    background-color: #e42971;
+    opacity: 0.3;
+    /* background: url("../images/stars.png") no-repeat fixed center; */
 }
 
 #right-card {
