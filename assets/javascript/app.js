@@ -4,7 +4,8 @@ $(document).ready(function () {
 
     var locations =[];          //index 0: venue, index:1, restaurant
     var dropdownArray = [];     //array to populate dropdown menu of concert cities
-    
+    var userRadius = 5;
+
     var venues = [];
     function searchBandsInTown(artist) {
         dropdownArray = []; 
@@ -22,52 +23,57 @@ $(document).ready(function () {
 
             // Printing the entire object to console
             // console.log(response);
+            if(response.length === 0) {
+                var newP = $("<p>").text("No events found for this artist.")
+                $("#content-display").append(newP);
+            }
+            else{
+                for (var i = 0; i < response.length; i++) {
+                    var venueName = response[i].venue.name;
+                    var venueDateTime = response[i].datetime;
+                    var venueLatitude = response[i].venue.latitude;
+                    var venueLongitude = response[i].venue.longitude;
+                    var venueCity = response[i].venue.city;
+                    var venueCountry = response[i].venue.country;
+                    var tickets = response[i].offers[0].url;
+                    var str = venueDateTime.split("T");
+                    var venueDate = str[0];
+                    var venueTime = str[1];
+
+                    var dropDown = {
+                        city: venueCity,
+                        country: venueCountry
+                    }
+                    var dropDownString = dropDown.city + ", " + dropDown.country;
 
 
-            for (var i = 0; i < response.length; i++) {
-                var venueName = response[i].venue.name;
-                var venueDateTime = response[i].datetime;
-                var venueLatitude = response[i].venue.latitude;
-                var venueLongitude = response[i].venue.longitude;
-                var venueCity = response[i].venue.city;
-                var venueCountry = response[i].venue.country;
-                var tickets = response[i].offers[0].url;
-                var str = venueDateTime.split("T");
-                var venueDate = str[0];
-                var venueTime = str[1];
+                    var venueInfo = {
+                        name: venueName,
+                        date: venueDate,
+                        time: venueTime,
+                        city: venueCity,
+                        latitude: venueLatitude,
+                        longitude: venueLongitude,
+                        ticket: tickets,
+                        CityCountry: dropDownString
 
-                var dropDown = {
-                    city: venueCity,
-                    country: venueCountry
+
+                    }; venues.push(venueInfo);                
+
+                    if(!(dropdownArray.includes(dropDownString))) {
+                        dropdownArray.push(dropDownString);
+                    }
+                    venueDisplay(i); 
                 }
-                var dropDownString = dropDown.city + ", " + dropDown.country;
-
-
-                var venueInfo = {
-                    name: venueName,
-                    date: venueDate,
-                    time: venueTime,
-                    city: venueCity,
-                    latitude: venueLatitude,
-                    longitude: venueLongitude,
-                    ticket: tickets,
-                    CityCountry: dropDownString
-
-
-                }; venues.push(venueInfo);                
-
-                if(!(dropdownArray.includes(dropDownString))) {
-                    dropdownArray.push(dropDownString);
-                }
-                venueDisplay(i); 
-
             };
             console.log(dropdownArray);
             addToDropdown();
             $(".dropdown-disp").show();
+            $("#search-title").hide();
         });
 
     };
+
 
     function addToDropdown() {
         for (var i = 0; i < dropdownArray.length; i++) {
@@ -76,9 +82,9 @@ $(document).ready(function () {
         }
         return;
     }
+
     
     function venueDisplay(i) {
-
         var cleanDate = venues[i].date.split("-");
         // console.log(venueDate);
         // console.log(venueTime);
@@ -106,16 +112,16 @@ $(document).ready(function () {
     };
  
 
-    
     var foodArray = [];
-    function findRestaurant(radius) {
-        radius = radius * 1600;
-        var latitude = locations[0].latitude;
-        var longitude = locations[0].longitude;
-
+    function findRestaurant() {
+        radius = userRadius * 1600;
+        var lat = locations[0].latitude;               //retrieving venue's latitude from array
+        var long = locations[0].longitude;
+        
+        // $("#chosenRest-div").remove();
         $("#radius-input").remove();
         $.ajax({
-            url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&radius=${radius}`,
+            url: `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${long}&radius=${radius}`,
             method: "GET",
             headers: { "Authorization": "Bearer LVshEEi8tr08eqDISgxUHY71RQeHWd8dcC6bMGLUxlYjFCOpDOZGQC_tIwv6XV3bGqHY3FUrU5_vE2qEAUh3eAJo6OOAApjxYRczIUFwSn28cfIAh11oCC4s0tWQW3Yx" }
 
@@ -139,26 +145,41 @@ $(document).ready(function () {
 
                     var obj = {
                         name: n,
-                        long: lg,
-                        lat: lt,
+                        longitude: lg,
+                        latitude: lt,
                         price: p,
-                        url: u
+                        url: u,
+                        image: img
                     }
                     foodArray.push(obj);
 
-                    var newDiv = $("<div>");
-                    var newTitle = $("<a>").attr("href", u).attr("target", "_blank").text(n);
-                    // var newImg = $("<img>").attr("src", img);
-                    var newP = $("<p>").text(p);
-                    var newBtn = $("<button>").attr("data-index", i).text("Select").addClass("rest-btn");
+                    RestaurantDisplay(i);
 
-                    newDiv.append(newTitle, newP, newBtn);
-                    $("#restaurant-div").append(newDiv);
+                    // var newDiv = $("<div>");
+                    // var newTitle = $("<a>").attr("href", u).attr("target", "_blank").text(n);
+                    // // var newImg = $("<img>").attr("src", img);
+                    // var newP = $("<p>").text(p);
+                    // var newBtn = $("<button>").attr("data-index", i).text("Select").addClass("rest-btn");
+
+                    // newDiv.append(newTitle, newP, newBtn);
+                    // $("#restaurant-div").append(newDiv);
                 };
 
             };
 
         });
+    }
+
+    function RestaurantDisplay(index) {
+        var newDiv = $("<div>");
+        var newTitle = $("<a>").attr("href", foodArray[index].url).attr("target", "_blank").text(foodArray[index].name);
+        // var newImg = $("<img>").attr("src", foodArray[index].img);
+        var newP = $("<p>").text(foodArray[index].price);
+        var newBtn = $("<button>").attr("data-index", index).text("Select").addClass("rest-btn");
+
+        newDiv.append(newTitle, newP, newBtn);
+        $("#restaurant-div").append(newDiv);
+        return;
     }
 
 
@@ -174,13 +195,24 @@ $(document).ready(function () {
         $("#content-display").append(newDiv);
     }
 
-    //-------------------listener events--------------------------
+
+    function bandFilter(userChoice) {
+        $("#content-display").empty();
+        for (var i = 0; i < venues.length; i++) {
+            if (venues[i].CityCountry === userChoice) {
+                venueDisplay(i);
+            }
+        }
+    }
+
+    //--------------------------------------------------------------
+    //---------------------LISTENER EVENTS--------------------------
+    //--------------------------------------------------------------
 
     $(document).on("click", "#select-radius", function() {          //click event when radius is selected
         console.log("radius selected");
-        var userInput = $("#radius").val().trim();
-        console.log(userInput);
-        findRestaurant(userInput);
+        userRadius = $("#radius").val().trim();
+        findRestaurant();
     })
 
     $(document).on("click", ".rest-btn", function() {               //user selects restaurant
@@ -189,15 +221,15 @@ $(document).ready(function () {
 
         $("#restaurant-div").remove();
         
-        var newDiv = $("<div>");
-        
-        var newDiv = $("<div>");
+        var newDiv = $("<div>").attr("id","chosenRest-div");
         var newTitle = $("<a>").attr("href", foodArray[index].url).attr("target", "_blank")
         .text(foodArray[index].name);
         var newP = $("<p>").text(foodArray[index].price);
-        var newBtn1 = $("<button>").text("Get Directions").addClass("getDirections-btn");
-        var newBtn2 = $("<button>").text("Change Destinations").addClass("changeDest-btn");
-        newDiv.append(newTitle, newP, newBtn1, newBtn2);
+        var newBtn1 = $("<button>").text("Get Directions");
+        var newA1 = $("<a>").attr("href", "directions.html");
+        var newBtn2 = $("<button>").text("Go Back").attr("id", "goBack-btn");
+        newA1.append(newBtn1);
+        newDiv.append(newTitle, newP, newA1, newBtn2);
         $("#content-display").append(newDiv);
     });
 
@@ -211,6 +243,7 @@ $(document).ready(function () {
         var inputArtist = $("#artist-input").val().trim();
         // Running the searchBandsInTown function(passing in the artist as an argument)
         searchBandsInTown(inputArtist);
+        
     });
 
     $(document).on("click", ".select-btn", function () {
@@ -233,42 +266,45 @@ $(document).ready(function () {
         dateP.append(cleanDate[1] + " ");
         dateP.append(cleanDate[2] + " ");
         dateDiv.append(dateP);
+        var cityP = $("<p>").text(city);
+        var countryP = $("<p>").text(name);
         var timeDiv = $("<div>").text(time.slice(0, 5));
 
         var newDiv = $("<div>");
 
-        newDiv.append(dateDiv, timeDiv, city, name);
+        newDiv.append(dateDiv, timeDiv, cityP, countryP);
         $("#content-display").append(newDiv);
 
         getRadius();
     });
 
-    function bandFilter(userChoice) {
-        $("#content-display").empty();
-        for (var i = 0; i < venues.length; i++) {
-            if (venues[i].CityCountry === userChoice) {
-                venueDisplay(i);
-            }
-        }
-    }
 
     $("#dropdown1").change(function(){
         var citySelected = $("#dropdown1 :selected").text();
         // console.log(citySelected);
         bandFilter(citySelected);
     });
-   
 
+
+    $(document).on("click", "#goBack-btn", function() {
+        $("#chosenRest-div").remove();
+        var newContentDiv = $("<div>").attr("id", "restaurant-div");
+        $("#content-display").append(newContentDiv);
+        
+        for(var i = 0; i < foodArray.length; i++) {
+            RestaurantDisplay(i);
+        }
+    });
 
 
 //----------------------Google maps--------------------------//
 
- //variable declaration
+// //  variable declaration
 //  var directionDisplay, map;
 //  var directionsService = new google.maps.DirectionsService();
 //  var geocoder = new google.maps.Geocoder()
  
- //initializing function
+// //  initializing function
 //  function initialize() {
 //      // set the default center of the map
 //        var latlng = new google.maps.LatLng(34.052235,-118.243683);
