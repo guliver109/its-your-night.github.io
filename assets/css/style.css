@@ -42,6 +42,7 @@ body {
 
 #content-display{
     text-align: center;
+    
 }
 #right-card {
     background-color: rgb(107, 238, 247, 0.5);
@@ -111,4 +112,8 @@ form {
 
     /* border: solid black 5px; */
     border-radius: 5px;
+}
+
+#restaurant-card {
+    visibility: hidden;
 }
