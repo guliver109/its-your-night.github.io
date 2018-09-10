@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+}
+button {
+    border-radius: 5px;
+}
+
+#routeForm {
+    text-align: center;
+    width: 70%;
+    margin: auto;
+}
+
+#route-start, #route-end, .radio-btn, .button, #calc-route {
+    margin: 8px;
+}
+
+#map_canvas {
+    width: 70%;
+    height: 350px;
+    margin: auto;
+}
+
+
+   
