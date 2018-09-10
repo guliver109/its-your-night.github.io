@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+  initialize();
     //retrieving coordinates from localStorage
     var coord = localStorage.getItem("coordinates");
     var coordArray = JSON.parse(coord);
@@ -8,6 +10,7 @@ $(document).ready(function() {
     var venueLong = coordArray[0].longitude;
     var restLat = coordArray[1].latitude;
     var restLong = coordArray[1].longitude;
+    console.log(venueLat);console.log(venueLong);console.log(restLat);console.log(restLong);
 
      //variable declaration
         var directionDisplay, map;
