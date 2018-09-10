@@ -154,15 +154,6 @@ $(document).ready(function () {
                     foodArray.push(obj);
 
                     RestaurantDisplay(i);
-
-                    // var newDiv = $("<div>");
-                    // var newTitle = $("<a>").attr("href", u).attr("target", "_blank").text(n);
-                    // // var newImg = $("<img>").attr("src", img);
-                    // var newP = $("<p>").text(p);
-                    // var newBtn = $("<button>").attr("data-index", i).text("Select").addClass("rest-btn");
-
-                    // newDiv.append(newTitle, newP, newBtn);
-                    // $("#restaurant-div").append(newDiv);
                 };
 
             };
@@ -184,15 +175,15 @@ $(document).ready(function () {
 
 
     function getRadius() {
+        var selectDiv = $("<select>").attr("id", "dropdown2").addClass("browser-default dropdown-disp");
+        var newOption1 = $("<option>").addClass("dropdown-disp").attr("selected", "selected").text("Restaurant Distance");
+        var newOption2 = $("<option>").addClass("dropdown-disp").text("1");
+        var newOption3 = $("<option>").addClass("dropdown-disp").text("5");
+        var newOption4 = $("<option>").addClass("dropdown-disp").text("10");
 
-        var newDiv = $("<div>").addClass("input-field").attr("id", "radius-input");
-        var lblDiv = $("<label>").attr("for", "radius").text("Restaurant Distance:").attr("id", "restaurant-distance")
-        var inDiv = $("<input>").attr("id", "radius")
-        .attr("type", "number").addClass("validate");
-        var btnDiv = $("<button>").attr("id", "select-radius").text("Show Results");
-        
-        newDiv.append(inDiv, lblDiv, btnDiv);
-        $("#content-display").append(newDiv);
+        selectDiv.append(newOption1, newOption2, newOption3, newOption4);  
+
+        $(".restaurant-search").append(selectDiv);
     }
 
 
@@ -200,6 +191,9 @@ $(document).ready(function () {
         $("#content-display").empty();
         for (var i = 0; i < venues.length; i++) {
             if (venues[i].CityCountry === userChoice) {
+                venueDisplay(i);
+            }
+            else if (userChoice === "Select city") {
                 venueDisplay(i);
             }
         }
@@ -212,6 +206,7 @@ $(document).ready(function () {
     $(document).on("click", "#select-radius", function() {          //click event when radius is selected
         console.log("radius selected");
         userRadius = $("#radius").val().trim();
+        userRadius = parseInt(userRadius);
         findRestaurant();
     })
 
@@ -250,9 +245,8 @@ $(document).ready(function () {
         var index = $(this).attr("data-index");
         locations = [];
         locations[0] = venues[index];
-        // var latitude = venues[index].latitude;
-        // var longitude = venues[index].longitude;
 
+        $(".dropdown-disp").hide();
         $("#content-display").empty();
 
         var date = venues[index].date;
