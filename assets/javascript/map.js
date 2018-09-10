@@ -1,6 +1,20 @@
 $(document).ready(function() {
 
+<<<<<<< HEAD
   initialize();
+    // //retrieving coordinates from localStorage
+    // var coord = localStorage.getItem("coordinates");
+    // var coordArray = JSON.parse(coord);
+    // console.log(coordArray);
+
+    // var venueLat = coordArray[0].latitude;
+    // var venueLong = coordArray[0].longitude;
+    // var restLat = coordArray[1].latitude;
+    // var restLong = coordArray[1].longitude;
+=======
+    initialize();
+    
+    
     //retrieving coordinates from localStorage
     var coord = localStorage.getItem("coordinates");
     var coordArray = JSON.parse(coord);
@@ -10,7 +24,8 @@ $(document).ready(function() {
     var venueLong = coordArray[0].longitude;
     var restLat = coordArray[1].latitude;
     var restLong = coordArray[1].longitude;
-    console.log(venueLat);console.log(venueLong);console.log(restLat);console.log(restLong);
+>>>>>>> js_code_edit4
+    // console.log(venueLat);console.log(venueLong);console.log(restLat);console.log(restLong);
 
      //variable declaration
         var directionDisplay, map;
@@ -62,7 +77,7 @@ $(document).ready(function() {
               position: latlng,
               map: map
             });
-        //string with the address parts
+        //string with the address parts 
         var address = 
         results[0].address_components[1].long_name+' '
         +results[0].address_components[0].long_name+', '+results[0].address_components[3].long_name
