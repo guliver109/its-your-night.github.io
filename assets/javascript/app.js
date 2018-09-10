@@ -107,6 +107,7 @@ $(document).ready(function () {
         ticketA.append(ticketBtn);
         newDiv.append(selectBtn, ticketA, dateDiv, timeDiv, venueNameDiv, cityDiv);
         $("#content-display").append(newDiv);
+        $("#left-card").css("opacity", "0.3");
         // console.log(tickets);
         return;
     };
@@ -193,6 +194,7 @@ $(document).ready(function () {
         
         newDiv.append(inDiv, lblDiv, btnDiv);
         $("#content-display").append(newDiv);
+    //    need this to be on the the new #restaurant-card
     }
 
 
