@@ -173,6 +173,8 @@ button {
 
 #left-col {
     height: 200px;
+    margin: 0 auto;
+    display: inline-block;
 }
 
 
@@ -268,7 +270,7 @@ button {
 
 
 .input-field {
-    position: fixed; 
+    margin: 0 auto;
 }
 
 .card-action {
@@ -322,7 +324,9 @@ form {
 .venue-box {
     /* background-color: rgb(78, 78, 255, 0.5); */
     background: linear-gradient(to bottom left, #33ccff 0%, #ff99ff 100%);
-    margin: 5px;
+    margin: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     text-align: center;
     width: 30%;
     display: inline-block;
@@ -602,3 +606,12 @@ form {
 }
 
 /* ---------------------------------------------------------------------------------- */
+
+#card-row1 {
+  width: 100%;
+  text-align: center;
+}
+ #dropdown1 {
+   width: 60%;
+  margin: auto;
+}

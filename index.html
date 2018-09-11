@@ -2,129 +2,129 @@
 <html lang="en">
 
 <head>
-
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Working Title</title>
-
+  
   <!----------------- MATERIALIZE --------------------------->
-
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-
+  
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-
+  
   <!-- -----------------JAVASCRIPT ----------------------------->
-
-
+  
+  
   <script defer src="./assets/javascript/app.js"></script>
-
-
+  
+  
   <!-- -----------------J QUERY -------------------------------->
-
+  
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
+  
+  
   <!----------------GOOGLE FONTS -------------------------------->
-
+  
   <link href="https://fonts.googleapis.com/css?family=Geo" rel="stylesheet" type="text/css">
-
-
+  
+  
   <!-----------------------GOOGLE FOR NEON BUTTON ----------------- -->
-
+  
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
+  
   <!-------------- CSS -------------------------------------->
-
+  
   <link rel="stylesheet" href="./assets/css/style.css">
-
-
-
-
-<body>
-
-  <div class="stars"></div>
-  <div class="twinkling"></div>
-
-  <nav>
-    <div class="nav-wrapper">
-
-
-      <div class="neonText">
-
-        <h1> <span>It's Your </span><span>Night!</span></h1>
-      </div>
-      <div class="aboutButton">
-        <li>About</a></li>
-      </div>
-
-  </nav> 
-
-
-  <!-- Page Layout here -->
-
-
-  <div cla√ss="container-fluid">
-
-
-    <div class="row">
-      <div id="left-col" class="col s4 m4">
-        <form>
-          <div class="input-field">
-            <div class="card" id="left-card">
-              <div class="card-content white-text">
-                <div id="neon-button">
-                  <h1>Artist Search<span class="first"></span></h1>
-                </div>
-                <div id="search-field">
-                  <input id="artist-input" type="artist search" placeholder="Artist">
-                  <i class="material-icons"></i>
-                  <button id="search-btn">submit</button>
+  
+  
+  
+  
+  <body>
+    
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <nav>
+      <div class="nav-wrapper">
+        
+        
+        <div class="neonText">
+          
+          <h1> <span>It's Your </span><span>Night!</span></h1>
+        </div>
+        <div class="aboutButton">
+          <li>About</a></li>
+        </div>
+        
+      </nav>
+      
+      
+      <!-- Page Layout here -->
+      
+      
+      <div class="container-fluid">
+        
+        <div class="row" id="card-row1">
+          <div id="left-col" class="col m12">
+            <form>
+              <div class="input-field">
+                <div class="card" id="left-card">
+                  <div class="card-content white-text">
+                    <div id="neon-button">
+                      <h1>Artist Search<span class="first"></span></h1>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, dignissimos exercitationem, nobis cum quas veritatis reprehenderit voluptas suscipit commodi itaque laudantium fugiat! Amet praesentium est enim reiciendis, et exercitationem quibusdam!</p>
+                    </div>
+                    <div id="search-field">
+                      <input id="artist-input" type="artist search" placeholder="Artist">
+                      <i class="material-icons"></i>
+                      <button id="search-btn">submit</button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>`
-        </form>
-
-      </div>
-      <div class="col s8 m8" id="right-column">
-        <div id="right-card" class="card">
-          <div class="card-content white-text" id="right-background-card">
-
-            <div class="artist-search" id="search-title">
-            </div>
-            <select id="dropdown1" class="browser-default dropdown-disp">
-              <option class="dropdown-disp" value="pick a city" selected>Select city</option>
-            </select><br />
-
-            <div class="row" id="content-display">
-
-            </div>
+            </form>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div id="left-col" class="col s4 m4">
-        </div>
-
-        <div class="col s8 m8" id="right-column">
-          <div id="restaurant-card" class="card">
-            <div class="card-content white-text">
-
-              <div class="restaurant-results">
-                <select id="dropdown2" class="browser-default dropdown-disp2">
-                  <option class="dropdown-disp2" value="pick a radius" selected>Restaurant Distance</option>
+        <div class="row" id="venue-row">
+          <div class="col m12" id="right-column">
+            <div id="right-card" class="card">
+              <div class="card-content white-text" id="right-background-card">
+                
+                <div class="artist-search" id="search-title">
+                </div>
+                <select id="dropdown1" class="browser-default dropdown-disp">
+                  <option class="dropdown-disp" value="pick a city" selected>Select city</option>
                 </select><br />
               </div>
+              <div class="row" id="content-display">
+              </div>
             </div>
           </div>
         </div>
+        <div class="row">
+          <div id="left-col" class="col s4 m4">
+          </div>
+          
+          <div class="col s8 m8" id="right-column">
+            <div id="restaurant-card" class="card">
+              <div class="card-content white-text">
+                
+                <div class="restaurant-results">
+                  <select id="dropdown2" class="browser-default dropdown-disp2">
+                    <option class="dropdown-disp2" value="pick a radius" selected>Restaurant Distance</option>
+                  </select><br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </div>
-
-    </div>
-
-</body>
-
-
-
-</html>
+      
+    </body>
+    
+    
+    
+    </html>
