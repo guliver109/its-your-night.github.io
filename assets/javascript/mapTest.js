@@ -150,20 +150,26 @@ $(document).ready(function () {
         var directionsDisplay = new google.maps.DirectionsRenderer();
         directionsDisplay.setMap(placesObject.map);
         var directionsService = new google.maps.DirectionsService();
+        var currentLat = placesObject.currentPositionLatitude.toString();
+        var currentLng = placesObject.currentPositionLong.toString();
+        var restLatStr = placesObject.restLat.toString();
+        var restLngStr = placesObject.restLong.toString();
+        var venueLatStr = placesObject.venueLat.toString();
+        var venueLngStr = placesObject.venueLong.toString();
         var request = {
-          origin: "Los Angeles",
-          destination: "Glendale, CA",
+          origin: {lat: currentLat, lng: currentLng},
+          destination: {lat: currentLat, lng: currentLng},
           waypoints: [
-                  { location: new google.maps.LatLng(this.restLat, this.restLong),
+                  { location: {lat: restLatStr, lng: restLngStr},
                     stopover: true
                   },{
-                    location: new google.maps.LatLng(this.venuetLat, this.venuetLong),
+                    location: {lat: venueLatStr, lng: venueLngStr},
                     stopover: true
                   }],
           travelMode: "DRIVING"
         }
         directionsService.route(request, function (response, status) { 
-          console.log(response);
+          console.log(`${placesObject.restLat},${placesObject.restLong}`);
           if (status == google.maps.DirectionsStatus.OK){
             directionsDisplay.setDirections(response);
           }
