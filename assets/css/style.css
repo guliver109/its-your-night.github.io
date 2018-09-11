@@ -675,5 +675,6 @@ form {
   padding: 0;
 }
 
-
-
+#goBack-btn {
+  margin-left: 10px; 
+}
