@@ -39,9 +39,9 @@ $(document).ready(function () {
 //   function initialize() {
 //     // set the default center of the map
 //       var latlng = new google.maps.LatLng(34.052235,-118.243683);
-//       // set route options
-//       var rendererOptions = { draggable: true };//draggable means you can alter/drag the route in the map
-//       directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+      //set route options
+      // var rendererOptions = { draggable: true };//draggable means you can alter/drag the route in the map
+      // directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
 //       //display options for the map
 
 //       // adding the map to the map placeholder
@@ -88,11 +88,11 @@ $(document).ready(function () {
             this.googleRestaurant();
             this.googleVenue();
             this.getDirection();
+            //displayRoute();
         }
       });
     }
   }
-
     placesObject.googleCurrentPosition = function () {
         return new google.maps.Marker({
           position: new google.maps.LatLng(this.currentPositionLatitude, this.currentPositionLongitude),
@@ -147,35 +147,69 @@ $(document).ready(function () {
         for (var i = 0; i < response.routes[0].legs.length; i++) {
           placesObject.route[i] = response.routes[0].legs[i];
         }
-          //console.log(placesObject.route[0]);
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+        directionsDisplay.setMap(placesObject.map);
+        var directionsService = new google.maps.DirectionsService();
+        var currentLat = placesObject.currentPositionLatitude.toString();
+        var currentLng = placesObject.currentPositionLong.toString();
+        var restLatStr = placesObject.restLat.toString();
+        var restLngStr = placesObject.restLong.toString();
+        var venueLatStr = placesObject.venueLat.toString();
+        var venueLngStr = placesObject.venueLong.toString();
+        var request = {
+          origin: {lat: currentLat, lng: currentLng},
+          destination: {lat: currentLat, lng: currentLng},
+          waypoints: [
+                  { location: {lat: restLatStr, lng: restLngStr},
+                    stopover: true
+                  },{
+                    location: {lat: venueLatStr, lng: venueLngStr},
+                    stopover: true
+                  }],
+          travelMode: "DRIVING"
+        }
+        directionsService.route(request, function (response, status) { 
+          console.log(`${placesObject.restLat},${placesObject.restLong}`);
+          if (status == google.maps.DirectionsStatus.OK){
+            directionsDisplay.setDirections(response);
+          }
+        });
+          console.log(placesObject.route);
       });
     }
-    var DirectionsRequest = {};
-    placesObject.DirectionsRequest = {
-        origin: new google.maps.LatLng(this.currentPositionLatitude, this.currentPositionLongitude),
-        destination: new google.maps.LatLng(this.currentPositionLatitude, this.currentPositionLongitude),
-        travelMode: DRIVING,
-        //transitOptions: TransitOptions,
-        //drivingOptions: DrivingOptions,
-        //unitSystem: UnitSystem,
-        waypoints: [
-          {location: new google.maps.LatLng(this.restLat, this.restLong),
-            stopover: true
-          },{
-            location: new google.maps.LatLng(this.venuetLat, this.venuetLong),
-            stopover: true
-          }],
-        // optimizeWaypoints: Boolean,
-        // provideRouteAlternatives: Boolean,
-        // avoidFerries: Boolean,
-        // avoidHighways: Boolean,
-        // avoidTolls: Boolean,
-        // region: String
-      };
-    directionsService.route = function() {
-
-    }
-
+    // //map directions
+    // function displayRoute() {
+    //   var directionsDisplay = new google.maps.DirectionsRenderer();
+    //   directionsDisplay.setMap(placesObject.map);
+    
+    // var request = {
+    //     origin: new google.maps.LatLng(this.currentPositionLatitude, this.currentPositionLongitude),
+    //     destination: new google.maps.LatLng(this.currentPositionLatitude, this.currentPositionLongitude),
+    //     travelMode: google.maps.TravelMode.DRIVING,
+    //     waypoints: [
+    //       { location: new google.maps.LatLng(this.restLat, this.restLong),
+    //         stopover: true
+    //       },{
+    //         location: new google.maps.LatLng(this.venuetLat, this.venuetLong),
+    //         stopover: true
+    //       }],
+    //   };
+      
+    //   var directionsService = new google.maps.DirectionsService();
+    //   directionsService.route(request, function (response, status) { 
+    //     console.log(response);
+    //     if (status == google.maps.DirectionsStatus.OK){
+    //       directionsDisplay.setDirections(response);
+    //     }
+    //   });
+    //   console.log(displayRoute());
+    // }
+    
+    
+    //var rendererOptions = { draggable: true };//draggable means you can alter/drag the route in the map
+    
+    
+    
   
 
   // // convert the position returned by the geolocation API to a google coordinate object
@@ -241,30 +275,30 @@ $(document).ready(function () {
   //   });
 
   //   //the directions
-    directionsService.route(request, function (response, status) {
-      if (status == google.maps.DirectionsStatus.OK) {
-        // directions returned by the API, clear the directions panel before adding new directions
-        $("#directionsPanel").empty();
-        // display the direction details in the container
-        directionsDisplay.setDirections(response);
-      } else {
-        // when the route could not be calculated./alert is a must
-        if (status == 'ZERO_RESULTS') {
-          alert('No route could be found between the origin and destination.');
-        } else if (status == 'UNKNOWN_ERROR') {
-          alert('A directions request could not be processed due to a server error. The request may succeed if you try again.');
-        } else if (status == 'REQUEST_DENIED') {
-          alert('This webpage is not allowed to use the directions service.');
-        } else if (status == 'OVER_QUERY_LIMIT') {
-          alert('The webpage has gone over the requests limit in too short a period of time.');
-        } else if (status == 'NOT_FOUND') {
-          alert('At least one of the origin, destination, or waypoints could not be geocoded.');
-        } else if (status == 'INVALID_REQUEST') {
-          alert('The DirectionsRequest provided was invalid.');
-        } else {
-          alert("There was an unknown error in your request. Requeststatus: nn" + status);
-        }
-      }
-    });
+    // directionsService.route(request, function (response, status) {
+    //   if (status == google.maps.DirectionsStatus.OK) {
+    //     // directions returned by the API, clear the directions panel before adding new directions
+    //     $("#directionsPanel").empty();
+    //     // display the direction details in the container
+    //     directionsDisplay.setDirections(response);
+    //   } else {
+    //     // when the route could not be calculated./alert is a must
+    //     if (status == 'ZERO_RESULTS') {
+    //       alert('No route could be found between the origin and destination.');
+    //     } else if (status == 'UNKNOWN_ERROR') {
+    //       alert('A directions request could not be processed due to a server error. The request may succeed if you try again.');
+    //     } else if (status == 'REQUEST_DENIED') {
+    //       alert('This webpage is not allowed to use the directions service.');
+    //     } else if (status == 'OVER_QUERY_LIMIT') {
+    //       alert('The webpage has gone over the requests limit in too short a period of time.');
+    //     } else if (status == 'NOT_FOUND') {
+    //       alert('At least one of the origin, destination, or waypoints could not be geocoded.');
+    //     } else if (status == 'INVALID_REQUEST') {
+    //       alert('The DirectionsRequest provided was invalid.');
+    //     } else {
+    //       alert("There was an unknown error in your request. Requeststatus: nn" + status);
+    //     }
+    //   }
+    // });
  });
 
