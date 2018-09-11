@@ -34,10 +34,12 @@
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
-
   <!-------------- CSS -------------------------------------->
 
   <link rel="stylesheet" href="./assets/css/style.css">
+
+
+
 
 <body>
 
@@ -45,17 +47,18 @@
   <div class="twinkling"></div>
 
   <nav>
-      <div class="nav-wrapper">
-          <!-- <div class="sign">
-              <span class="sign__word">It's Your Night!</span>
-          </div> -->
-          <a class="brand-logo" id="navTop">It's Your Night!</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#AboutLink" class="icon fa-info-circle" id="about">About</a></li>
-        </ul>
-        <!-- About Us -->
+    <div class="nav-wrapper">
+
+
+      <div class="neonText">
+
+        <h1> <span>It's Your </span><span>Night!</span></h1>
       </div>
-    </nav>
+      <div class="aboutButton">
+        <li>About</a></li>
+      </div>
+
+  </nav> 
 
 
   <!-- Page Layout here -->
@@ -70,9 +73,9 @@
           <div class="input-field">
             <div class="card" id="left-card">
               <div class="card-content white-text">
-                  <div id="neon-button">
-                      <h1>Artist Search<span class="first"></span></h1>
-                    </div>
+                <div id="neon-button">
+                  <h1>Artist Search<span class="first"></span></h1>
+                </div>
                 <div id="search-field">
                   <input id="artist-input" type="artist search" placeholder="Artist">
                   <i class="material-icons"></i>
@@ -86,9 +89,9 @@
       </div>
       <div class="col s8 m8" id="right-column">
         <div id="right-card" class="card">
-          <div class="card-content white-text">
+          <div class="card-content white-text" id="right-background-card">
 
-            <div class="restaurant-search" id="search-title">
+            <div class="artist-search" id="search-title">
             </div>
             <select id="dropdown1" class="browser-default dropdown-disp">
               <option class="dropdown-disp" value="pick a city" selected>Select city</option>
@@ -105,32 +108,20 @@
         </div>
 
         <div class="col s8 m8" id="right-column">
-            <div id="restaurant-card" class="card">
-              <div class="card-content white-text">
-                
-                <div class="restaurant-results">
-                    <select id="dropdown2" class="browser-default dropdown-disp2">
-                      <option class="dropdown-disp2" value="pick a radius" selected>Restaurant Distance</option>
-                    </select><br/>
-                  </div>
-                </div>
-                </div>
+          <div id="restaurant-card" class="card">
+            <div class="card-content white-text">
+
+              <div class="restaurant-results">
+                <select id="dropdown2" class="browser-default dropdown-disp2">
+                  <option class="dropdown-disp2" value="pick a radius" selected>Restaurant Distance</option>
+                </select><br />
               </div>
             </div>
-
-  </div>
-
-  <!-- About Us -->
-  <footer id="about" class="panel">
-      <div>
-              <section>
-                  <h2>ABOUT US</h2>
-                  <p>Nulla consequat, ex ut suscipit rutrum, mi dolor tincidunt erat, et scelerisque turpis ipsum eget quis orci mattis
-                      aliquet. Maecenas fringilla et ante at lorem et ipsum. Dolor nulla eu bibendum sapien. Donec non pharetra dui. Nulla
-                      consequat, ex ut suscipit rutrum, mi dolor tincidunt erat, et scelerisque turpis ipsum.</p>
-              </section>
+          </div>
+        </div>
       </div>
-  </footer>
+
+    </div>
 
 </body>
 
