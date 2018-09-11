@@ -2,16 +2,13 @@ $(document).ready(function () {
   //variable declaration
   var directionsService = new google.maps.DirectionsService();
   var geocoder = new google.maps.Geocoder();
-
   //retrieving coordinates from localStorage
   var coord = localStorage.getItem("coordinates");
   //console.log(coord);
   var venueRestArray = JSON.parse(coord);
-
   var coordArray = [ //array of objects
     // current location coords
     {
-
     },
     // restaurant coords
     {
@@ -30,9 +27,7 @@ $(document).ready(function () {
   };
   //console.log(placesObject)
   function initMap() {};
-
   //console.log(placesObject.latlng);
-
 //   //console.log(placesObject.myOptions)
 //   // adding the map to the map placeholder\
 //   //initializing function
@@ -43,7 +38,6 @@ $(document).ready(function () {
       // var rendererOptions = { draggable: true };//draggable means you can alter/drag the route in the map
       // directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
 //       //display options for the map
-
 //       // adding the map to the map placeholder
 //       map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
 //       // sticking the map to the directions
@@ -58,17 +52,12 @@ $(document).ready(function () {
 //             // when no geolocation is available, alert this message
 //             alert("Geolocation not supported or not enabled.");
 //       }
-
-
   
   placesObject.found = function (position) {
-
   //should be start-restaurant-venue-home
     //venue
     coordArray[0].latitude = position.coords.latitude;
     coordArray[0].longitude = position.coords.longitude;
-
-
     placesObject.currentPositionLatitude = coordArray[0].latitude;
     placesObject.currentPositionLongitude = coordArray[0].longitude;
     placesObject.restLat = coordArray[1].latitude;
@@ -77,7 +66,6 @@ $(document).ready(function () {
     placesObject.venueLong = parseFloat(coordArray[2].longitude);
     
   }
-
   placesObject.getCurrentPosition = function () {
     if (navigator.geolocation) {
       // 'this" changes within nested functions in methods, use arrow functions to keep this as parent object
@@ -117,7 +105,6 @@ $(document).ready(function () {
       this.getCurrentPosition();
       //console.log(this.googleRestaurant());
     };
-
     placesObject.initialize = function() {
       this.myOptions = {
         zoom: 10,
@@ -131,13 +118,18 @@ $(document).ready(function () {
   placesObject.createMap();
   
   //directions for routes
+  // var currentLat = placesObject.currentPositionLatitude.toString();
+  // var currentLng = placesObject.currentPositionLong.toString();
+  // var restLatStr = placesObject.restLat.toString();
+  // var restLngStr = placesObject.restLong.toString();
+  // var venueLatStr = placesObject.venueLat.toString();
+  // var venueLngStr = placesObject.venueLong.toString();
   
   placesObject.getDirection = function () {
     var APIKey = "AIzaSyCVg7w_mohqdu3aS4yQWvgQELczpbIsXmw";
     var proxy = "https://cors-anywhere.herokuapp.com/"
     
     var directionsURL = `${proxy}https://maps.googleapis.com/maps/api/directions/json?origin=${this.currentPositionLatitude},${this.currentPositionLongitude}&destination=${this.currentPositionLatitude},${this.currentPositionLongitude}&waypoints=${this.restLat},${this.restLong}|${this.venueLat},${this.venueLong}&key=${APIKey}`;
-
         $.ajax({
           url: directionsURL,
           method: "GET"
@@ -150,20 +142,13 @@ $(document).ready(function () {
         var directionsDisplay = new google.maps.DirectionsRenderer();
         directionsDisplay.setMap(placesObject.map);
         var directionsService = new google.maps.DirectionsService();
-        var currentLat = placesObject.currentPositionLatitude.toString();
-        var currentLng = placesObject.currentPositionLong.toString();
-        var restLatStr = placesObject.restLat.toString();
-        var restLngStr = placesObject.restLong.toString();
-        var venueLatStr = placesObject.venueLat.toString();
-        var venueLngStr = placesObject.venueLong.toString();
         var request = {
-          origin: {lat: currentLat, lng: currentLng},
-          destination: {lat: currentLat, lng: currentLng},
+          origin: new google.maps.LatLng({lat: placesObject.currentPositionLatitude, lng: placesObject.currentPositionLong }),
+          destination: new google.maps.LatLng({lat: placesObject.currentPositionLatitude, lng: placesObject.currentPositionLong }),
           waypoints: [
-                  { location: {lat: restLatStr, lng: restLngStr},
-                    stopover: true
+                  {location: new google.maps.LatLng({lat: placesObject.restLat, lng: placesObject.restLong}),    stopover: true
                   },{
-                    location: {lat: venueLatStr, lng: venueLngStr},
+                    location: new google.maps.LatLng({lat: placesObject.venueLat, lng: placesObject.venueLong}),
                     stopover: true
                   }],
           travelMode: "DRIVING"
@@ -211,7 +196,6 @@ $(document).ready(function () {
     
     
   
-
   // // convert the position returned by the geolocation API to a google coordinate object
   // // then try to reverse geocode the location to return a human-readable address
   // geocoder.geocode({ "latLng": placesObject.latlng }, function (results, status) {
@@ -240,7 +224,6 @@ $(document).ready(function () {
   //     alert("Geocoder failed due to: " + status);
   //   }
   // });
-
   // function calcRoute() {
   //   // get the travelmode, startpoint and via point   
   //   var travelMode = $('input[name="travelMode"]:checked').val();
@@ -273,7 +256,6 @@ $(document).ready(function () {
   //       })(marker, i));
   //     }
   //   });
-
   //   //the directions
     // directionsService.route(request, function (response, status) {
     //   if (status == google.maps.DirectionsStatus.OK) {
@@ -301,4 +283,3 @@ $(document).ready(function () {
     //   }
     // });
  });
-
