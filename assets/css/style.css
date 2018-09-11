@@ -185,10 +185,9 @@ button {
 #left-card {
     height: 146px;
     padding-top: 25px;
-    /* opacity: 0.0;  */
+    /* opacity: 0.3;  */
     background-color: transparent;
-
-}
+}   
 
 #content-display {
     text-align: center;

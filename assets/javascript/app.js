@@ -246,7 +246,7 @@ $(document).ready(function () {
     })
 
     $("#neon-button").on("click", function() {      //hides neon title when user clicks on it, search box appears
-        $("#left-card").css("background-color", "#e42971");
+        // $("#left-card").css("background-color", "#e42971");
         $("#search-field").show();
         $("#neon-button").hide();
     })
