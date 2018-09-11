@@ -198,7 +198,7 @@ form {
     border-radius: 5px;
 }
 
-#neon-button {
+/*#neon-button {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -209,7 +209,7 @@ form {
     border-radius: 8px;
     border: 3px solid teal(0, 40, 70);
     cursor: pointer;
-  }
+  }*/
   
   #neon-button:hover {
     animation: border-flicker 2s linear forwards;
