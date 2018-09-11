@@ -327,24 +327,6 @@ form {
     color: white;
 }
 
-.venue-box {
-    /* background-color: rgb(78, 78, 255, 0.5); */
-    background: #78E0F2; 
-    margin: 25px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    text-align: center;
-    width: 30%;
-    display: inline-block;
-    opacity: 0.7;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%; 
-    border: solid black 5px;
-    border-radius: 5px;
-    font-size: 30px;
-} 
-
 /* #neon-button {
     position: absolute;
     top: 50%;
@@ -567,6 +549,52 @@ form {
       0 0 12px -1px rgb(0, 180, 230) inset;
     }
   }
+
+/* -------------------------VENUE BOX / BORDER BLINK -------------------------------------- */
+@-webkit-keyframes blink { 50% { border-color: purple; }  }
+
+.venue-box {
+  /* background-color: rgb(78, 78, 255, 0.5); */
+  background: #78E0F2; 
+  margin: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center; 
+  width: 30%;
+  display: inline-block;
+  opacity: 0.7;
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+  font-size: 30px;
+  border: 5px solid pink;
+  -webkit-animation: blink .5s step-end infinite alternate; 
+} 
+
+/* @-webkit-keyframes venue-box {    
+  from, to {    
+      border-color: transparent    
+  }    
+  50% {    
+      border-color: pink    
+  }    
+}    
+@keyframes venue-box {    
+  from, to {    
+      border-color: transparent    
+  }    
+  50% {    
+      border-color: pink   
+  }    
+}    
+.venue-box{    
+  border: 5px solid pink;
+  /* add 'border-color: transparent' if you wish no border to show initially */  
+/* }
+.venue-box:hover {    
+  -webkit-animation: borderBlink 1s step-end infinite;    
+  animation: borderBlink 1s step-end infinite;    
+}  */
 
 
  /* ---------------------------RESTAURANT DISPLAY STYLE---------------------------- */
