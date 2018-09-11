@@ -1,5 +1,6 @@
 $(".dropdown-disp").hide();
 $("#restaurant-card").hide();
+$("#search-field").hide();
 
 $(document).ready(function () {
 
@@ -167,7 +168,8 @@ $(document).ready(function () {
     function RestaurantDisplay(index) {
         var newDiv = $("<div>");
         var newTitle = $("<a>").attr("href", foodArray[index].url).attr("target", "_blank").text(foodArray[index].name);
-        // var newImg = $("<img>").attr("src", foodArray[index].img);
+        var imgDiv = $("<div>").addClass("img-div");
+        var newImg = $("<img>").attr("src", foodArray[index].img).addClass("rest-img responsive-img");
         var newP = $("<p>").text(foodArray[index].price);
         var newBtn = $("<button>").attr("data-index", index).text("Select").addClass("rest-btn");
 
@@ -205,10 +207,22 @@ $(document).ready(function () {
     //---------------------LISTENER EVENTS--------------------------
     //--------------------------------------------------------------
 
+    $("#artist-input").on("click", function() {
+        $("#artist-input").val("");
+        $("#left-card").css("opacity", "1.0");
+    })
+
+    $("#neon-button").on("click", function() {
+        $("#left-card").css("background-color", "#e42971");
+        $("#search-field").show();
+        $("#neon-button").hide();
+    })
+
     $("#dropdown2").change(function(){        //click event when radius is selected
         console.log("radius selected");
         userRadius = $("#dropdown2 :selected").text();
         userRadius = parseInt(userRadius);
+        $("#restaurant-card").hide();
         findRestaurant();
     })
 
@@ -243,7 +257,7 @@ $(document).ready(function () {
         
     });
 
-    $(document).on("click", ".select-btn", function () {
+    $(document).on("click", ".select-btn", function () {        //select venue
         var index = $(this).attr("data-index");
         locations = [];
         locations[0] = venues[index];
@@ -266,7 +280,7 @@ $(document).ready(function () {
         var countryP = $("<p>").text(name);
         var timeDiv = $("<div>").text(time.slice(0, 5));
 
-        var newDiv = $("<div>");
+        var newDiv = $("<div>").addClass("venue-box");
 
         newDiv.append(dateDiv, timeDiv, cityP, countryP);
         $("#content-display").append(newDiv);

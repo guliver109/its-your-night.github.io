@@ -120,8 +120,8 @@ button {
 #left-card {
     height: 146px;
     padding-top: 25px;
-    /* opacity: 0.3;  */
-    background-color: #e42971
+    /* opacity: 0.0;  */
+    background-color: transparent;
 }
 
 #content-display {
@@ -414,4 +414,8 @@ form {
       box-shadow: 0 0 15px -1px rgb(0, 180, 230), 
       0 0 12px -1px rgb(0, 180, 230) inset;
     }
+  }
+
+  .rest-img {
+
   }
