@@ -253,8 +253,8 @@ button {
 
 /* --------------------------------------NEON - ABOUT SIGN ---------------------------- */
 .aboutButton { 
-    margin: 15px 0 0;
-    font-size: 15px;
+    margin: 15px 15px 0 0;
+    font-size: 25px;
     font-family: 'Futura';
     color: #fff;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 55px #ff0080, 0 0 75px #ff0080;
@@ -327,7 +327,7 @@ form {
 
 .venue-box {
     /* background-color: rgb(78, 78, 255, 0.5); */
-    background: linear-gradient(to bottom left, #33ccff 0%, #ff99ff 100%);
+    background: #78E0F2; 
     margin: 25px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -335,10 +335,13 @@ form {
     width: 30%;
     display: inline-block;
     opacity: 0.7;
-
-    /* border: solid black 5px; */
+    width: 300px;
+    height: 300px;
+    border-radius: 50%; 
+    border: solid black 5px;
     border-radius: 5px;
-}
+    font-size: 30px;
+} 
 
 /* #neon-button {
     position: absolute;
