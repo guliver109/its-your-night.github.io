@@ -45,7 +45,7 @@ header a, a:visited {
 }
 
 .stars, .twinkling {
-  position:absolute;
+  position: fixed;
   top:0;
   left:0;
   right:0;
@@ -70,17 +70,6 @@ header a, a:visited {
   -webkit-animation:move-twink-back 200s linear infinite;
   animation:move-twink-back 200s linear infinite;
 } 
-/* 
-.clouds{
-    background:transparent url(../images/images/clouds4.png) repeat top center;
-    z-index:3;
-
-  -moz-animation:move-clouds-back 200s linear infinite;
-  -ms-animation:move-clouds-back 200s linear infinite;
-  -o-animation:move-clouds-back 200s linear infinite;
-  -webkit-animation:move-clouds-back 200s linear infinite;
-  animation:move-clouds-back 200s linear infinite;
-} */
 
 body {
 
@@ -111,11 +100,6 @@ button {
     font-display: bold
 }
 
-.card {
-    font-size: 25px;
-    font-display: bold; 
-    margin-bottom: 0px;
-}
 
 #left-card {
     height: 146px;
@@ -136,8 +120,12 @@ button {
     color: white;
 }
 
-.nav-wrapper {
+/* .nav-wrapper {
     background-color: #e42971;
+} */
+
+.icon fa-info-circle {
+    text-align: right;
 }
 
 .input-field {
@@ -150,10 +138,11 @@ button {
 
 .card-content {
     padding: 24px 24px 24px 24px !important;
+    font-size: 25px;
 }
 
 #right-column {
-    margin-top: 15px
+    margin-top: 15px;
 }
 
 #artist-input {
