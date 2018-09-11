@@ -46,13 +46,14 @@ $(document).ready(function () {
                     var str = venueDateTime.split("T");
                     var venueDate = str[0];
                     var venueTime = str[1];
+                    var timeString = convertTime(venueTime);
 
                     var dropDown = {
                         city: venueCity,
                         country: venueCountry
                     }
                     var dropDownString = dropDown.city + ", " + dropDown.country;
-
+                
 
                     var venueInfo = {
                         name: venueName,
@@ -62,7 +63,8 @@ $(document).ready(function () {
                         latitude: venueLatitude,
                         longitude: venueLongitude,
                         ticket: tickets,
-                        CityCountry: dropDownString
+                        CityCountry: dropDownString,
+                        timeStr: timeString
 
 
                     }; venues.push(venueInfo);                
@@ -123,7 +125,7 @@ $(document).ready(function () {
         dateP.append(cleanDate[2] + " ");
         dateDiv.append(dateP);
 
-        var timeDiv = $("<div>").text(convertTime(venues[i].time));
+        var timeDiv = $("<div>").text(venues[i].timeStr);
         var venueNameDiv = $("<div>").text(venues[i].name);
         var cityDiv = $("<div>").text(venues[i].city);
         var ticketA = $("<a>").attr("href", venues[i].ticket).attr("target", "_blank");
@@ -297,7 +299,7 @@ $(document).ready(function () {
         $("#content-display").empty();
 
         var date = venues[index].date;
-        var time = venues[index].time;
+        var time = venues[index].timeStr;
         var city = venues[index].city;
         var name = venues[index].name;
         var dateDiv = $("<div>");
