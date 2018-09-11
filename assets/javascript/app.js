@@ -4,7 +4,7 @@ $("#search-field").hide();
 
 $(document).ready(function () {
 
-    var locations =[];          //index 0: venue, index:1, restaurant
+    var locations =[];          //locations chosen by user. (index 0: venue, index:1, restaurant)
     var dropdownArray = [];     //array to populate dropdown menu of concert cities
     var userRadius = 5;
 
@@ -12,10 +12,13 @@ $(document).ready(function () {
     function searchBandsInTown(artist) {
         dropdownArray = []; 
         venues = [];
+        var artistFound = true;
+
+        $(".dropdown1-options").remove();       //remove previous dropdown city options
         $("#content-display").empty();
         console.log(artist) // replace " " with a "+", look into string methods
         artist = artist.replace(" ", "+");
-
+        
         // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
         var queryURL = `https://rest.bandsintown.com/artists/${artist}/events?app_id=trilogy`;
         $.ajax({
@@ -26,8 +29,10 @@ $(document).ready(function () {
             // Printing the entire object to console
             // console.log(response);
             if(response.length === 0) {
-                var newP = $("<p>").text("Artist not currently touring.")
+                $(".dropdown-disp").hide();
+                var newP = $("<p>").text("Artist currently not touring.")
                 $("#content-display").append(newP);
+                artistFound = false;
             }
             else{
                 for (var i = 0; i < response.length; i++) {
@@ -62,24 +67,43 @@ $(document).ready(function () {
 
                     }; venues.push(venueInfo);                
 
-                    if(!(dropdownArray.includes(dropDownString))) {
+                    if(!(dropdownArray.includes(dropDownString))) {     //if city,country not yet in the array then add
                         dropdownArray.push(dropDownString);
                     }
                     venueDisplay(i); 
                 }
             };
-            console.log(dropdownArray);
-            addToDropdown();
-            $(".dropdown-disp").show();
-            $("#search-title").hide();
+            if (artistFound) {                          //only show city dropdown if artist is currently touring
+                console.log(dropdownArray);
+                addToDropdown();
+                $(".dropdown-disp").show();
+                $("#search-title").hide();
+            }
         });
 
     };
 
+    function convertTime(inTime) {                  //converts military time to am/pm
+        var hourVar = parseInt(inTime.slice(0, 3));
 
-    function addToDropdown() {
+        if(hourVar > 12) {
+            hourVar = hourVar -12;
+            var hourStr = hourVar + ":00pm";
+        }
+        else if (hourVar === 12) {
+            var hourStr = hourVar + ":00pm";
+        }
+        else {
+            var hourStr = hourVar + ":00am";
+        }
+
+        return hourStr;
+    }
+
+    //populates city,coutry dropdown filter
+    function addToDropdown() {                          
         for (var i = 0; i < dropdownArray.length; i++) {
-            var newOption = $("<option>").text(dropdownArray[i]);
+            var newOption = $("<option>").text(dropdownArray[i]).addClass("dropdown1-options");
             $("#dropdown1").append(newOption);  
         }
         return;
@@ -99,7 +123,7 @@ $(document).ready(function () {
         dateP.append(cleanDate[2] + " ");
         dateDiv.append(dateP);
 
-        var timeDiv = $("<div>").text(venues[i].time.slice(0, 5));
+        var timeDiv = $("<div>").text(convertTime(venues[i].time));
         var venueNameDiv = $("<div>").text(venues[i].name);
         var cityDiv = $("<div>").text(venues[i].city);
         var ticketA = $("<a>").attr("href", venues[i].ticket).attr("target", "_blank");
@@ -146,6 +170,7 @@ $(document).ready(function () {
                     var p = data[i].price;
                     var u = data[i].url;
                     var img = data[i].image_url;
+                    var cat = data[i].categories[0].title;
 
                     var obj = {
                         name: n,
@@ -153,7 +178,8 @@ $(document).ready(function () {
                         latitude: lt,
                         price: p,
                         url: u,
-                        image: img
+                        image: img,
+                        category: cat
                     }
                     foodArray.push(obj);
 
@@ -166,14 +192,21 @@ $(document).ready(function () {
     }
 
     function RestaurantDisplay(index) {
-        var newDiv = $("<div>");
-        var newTitle = $("<a>").attr("href", foodArray[index].url).attr("target", "_blank").text(foodArray[index].name);
-        var imgDiv = $("<div>").addClass("img-div");
-        var newImg = $("<img>").attr("src", foodArray[index].img).addClass("rest-img responsive-img");
-        var newP = $("<p>").text(foodArray[index].price);
+        // console.log(foodArray[index].img);
+        var newDiv = $("<div>").addClass("row rest-div");
+        var newTitle = $("<a>").attr("href", foodArray[index].url).attr("target", "_blank").text(foodArray[index].name).addClass("rest-name");
+        var imgDiv = $("<div>").addClass("col s3 img-cont");
+        var newImg = $("<img>").attr("src", foodArray[index].image).addClass("responsive-img circle rest-img");
+        var newP = $("<p>").text(foodArray[index].price).addClass("p-style");
+        var newP2 = $("<p>").text(foodArray[index].category).addClass("p-style");
+        var textDiv = $("<div>").addClass("col s6 titleDiv-style");
+        var btnDiv = $("<div>").addClass("col s3 btnDiv-style");
         var newBtn = $("<button>").attr("data-index", index).text("Select").addClass("rest-btn");
 
-        newDiv.append(newTitle, newP, newBtn);
+        textDiv.append(newTitle, newP, newP2);
+        imgDiv.append(newImg);
+        btnDiv.append(newBtn);
+        newDiv.append(imgDiv,textDiv,btnDiv);
         $("#restaurant-div").append(newDiv);
         return;
     }
@@ -181,8 +214,6 @@ $(document).ready(function () {
 
     function getRadius() {
         $("#restaurant-card").show();
-        // var selectDiv = $("<select>").attr("id", "dropdown2").addClass("browser-default dropdown-disp");
-        // var newOption1 = $("<option>").addClass("dropdown-disp").attr("selected", "selected").text("Restaurant Distance");
         var newOption2 = $("<option>").addClass("dropdown-disp").text("1");
         var newOption3 = $("<option>").addClass("dropdown-disp").text("5");
         var newOption4 = $("<option>").addClass("dropdown-disp").text("10");
@@ -191,7 +222,7 @@ $(document).ready(function () {
     }
 
 
-    function bandFilter(userChoice) {
+    function bandFilter(userChoice) {                   //filters concert venue by city,country selected by user on dropdown
         $("#content-display").empty();
         for (var i = 0; i < venues.length; i++) {
             if (venues[i].CityCountry === userChoice) {
@@ -204,15 +235,15 @@ $(document).ready(function () {
     }
 
     //--------------------------------------------------------------
-    //---------------------LISTENER EVENTS--------------------------
+    //---------------------EVENTS LISTENER--------------------------
     //--------------------------------------------------------------
 
-    $("#artist-input").on("click", function() {
+    $("#artist-input").on("click", function() {   //changes artist search box opacity 1 when user clicks on input box
         $("#artist-input").val("");
         $("#left-card").css("opacity", "1.0");
     })
 
-    $("#neon-button").on("click", function() {
+    $("#neon-button").on("click", function() {      //hides neon title when user clicks on it, search box appears
         $("#left-card").css("background-color", "#e42971");
         $("#search-field").show();
         $("#neon-button").hide();
@@ -257,7 +288,7 @@ $(document).ready(function () {
         
     });
 
-    $(document).on("click", ".select-btn", function () {        //select venue
+    $(document).on("click", ".select-btn", function () {        //when user selects venue, the selection is dipslayed
         var index = $(this).attr("data-index");
         locations = [];
         locations[0] = venues[index];
@@ -277,12 +308,13 @@ $(document).ready(function () {
         dateP.append(cleanDate[2] + " ");
         dateDiv.append(dateP);
         var cityP = $("<p>").text(city);
-        var countryP = $("<p>").text(name);
+        var venueyP = $("<p>").text(name);
+        var msgP = $("<p>").text("Venue chosen:");
         var timeDiv = $("<div>").text(time.slice(0, 5));
 
         var newDiv = $("<div>").addClass("venue-box");
 
-        newDiv.append(dateDiv, timeDiv, cityP, countryP);
+        newDiv.append(msgP, venueyP, cityP, dateDiv, timeDiv);
         $("#content-display").append(newDiv);
 
         getRadius();

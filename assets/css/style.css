@@ -405,6 +405,50 @@ form {
     }
   }
 
-  .rest-img {
 
+ /* ---------------------------RESTAURANT DISPLAY STYLE---------------------------- */
+
+ .rest-div {
+    height: 120px;
+    width: 700px;
+    margin-top: 10px 0px 5px 50px;
+    background-color: rgba(247, 203, 58, 0.5);
   }
+
+  .rest-name {
+    font-size: 24px;
+    color: white;
+  }
+
+  .p-style {
+    color: #000;
+    font-size: 18px;
+  }
+
+  .rest-img {
+    max-width: 100%;
+    max-width: 100%;
+  } 
+
+  .img-cont {
+    margin-top: 10px;
+  }
+
+  img.responsive-img, video.responsive-video {
+    max-width: 100px;
+    height: 100px;
+}
+
+#restaurant-div {
+  margin-top: 30px;
+}
+
+.titleDiv-style {
+  margin-top: 15px;
+}
+
+.btnDiv-style {
+  margin-top: 40px;
+}
+
+/* ---------------------------------------------------------------------------------- */
