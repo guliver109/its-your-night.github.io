@@ -124,7 +124,7 @@ button {
 }
 
 /* ------------------NAV SIGN TEXT -------------------------- */
-.sign {
+/* .sign {
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -137,16 +137,16 @@ __word {
       font-size: 5.6rem;
       text-align: center;
       line-height: 1;
-      color: #c6e2ff;
-      animation: neon .08s ease-in-out infinite alternate;
+      color: #c6e2ff; */
+      /* animation: neon .08s ease-in-out infinite alternate;
 
 } 
   
-  /*----------Animation Keyframes for SIGN ----------------- --*/
+  /* ----------Animation Keyframes for SIGN ----------------- --
   
   /* // animation */
   
-  @keyframes neon {
+  /* @keyframes neon {
     from {
       text-shadow:
       0 0 6px rgba(202,228,225,0.92),
@@ -165,7 +165,7 @@ __word {
       0 0 38px rgba(30,132,242,0.88),
       0 0 60px rgba(30,132,242,1);
     }
-  }
+  }  */
 
 /* .nav-wrapper {
     background-color: #e42971;
