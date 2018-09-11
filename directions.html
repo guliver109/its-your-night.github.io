@@ -1,25 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+    
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Working Title</title>
+    
+      <!----------------- MATERIALIZE --------------------------->
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    
+      <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    
+      <!-- -----------------JAVASCRIPT ----------------------------->
+    
+      <script defer src="./assets/javascript/map.js"></script>
 
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--jquery-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!--google map api-->
+      <script defer src="./assets/javascript/mapTest.js"></script>
+      
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    
+      <!-- -----------------J QUERY -------------------------------->
+    
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+      <!----------------GOOGLE FONTS -------------------------------->
+    
+      <link href="https://fonts.googleapis.com/css?family=Geo" rel="stylesheet" type="text/css">
+    
+    
+      <!-----------------------GOOGLE FOR NEON BUTTON ----------------- -->
+    
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+      <!-----------------GOOGLE MAP API -------------------------------------->
+
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDFDILgYTDqnhh210NvOpXm4EYjFlBke4g"></script>
-    <script defer type="text/javascript" src="assets/javascript/mapTest.js"></script>
-    <link rel="stylesheet" href="./assets/css/maps.css">
+    
+      <!-------------- CSS --------------------------------------------------------->
 
-    <title>Geo Location Map</title>
+      <link rel="stylesheet" href="./assets/css/maps.css">
+     
+        
 </head>
 
 <body>
+
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+
     <nav>
         <div class="nav-wrapper">
-            <a class="brand-logo" id="navTop">It's Your Night!</a>
-        </div>
+
+            <div class="neonText">
+
+                <h1> <span>It's Your </span><span>Night!</span></h1>
+            </div>
+
     </nav>
+
     <!--output/this part is for materialize-->
     <!--I've stripped out all unnecessary styling to keep things simple-->
     <!-- style="width:100%; height:300px"></div>map dispaly div -->
@@ -65,10 +107,10 @@
                 <label><input type="radio" name="travelMode" value="BICYCLING" /> Bicylcing</label>
                 <label><input type="radio" name="travelMode" value="TRANSIT" /> Public transport</label>
                 <label><input type="radio" name="travelMode" value="WALKING" /> Walking</label> -->
-                </div>
-                <!--initialization code is executed-->
-                <!--this would initialize whole map-->
-                <!-- <body onLoad="initialize()"></body> -->
+        </div>
+        <!--initialization code is executed-->
+        <!--this would initialize whole map-->
+        <!-- <body onLoad="initialize()"></body> -->
         <span class="button" data="restaurant"></span>
         <!--container to display the direction details-->
         <div id="directionsPanel">
