@@ -193,6 +193,7 @@ button {
 
 #content-display {
     text-align: center;
+    margin-bottom: -56px;
     
 }
 #right-card {
@@ -315,11 +316,12 @@ form {
 }
 
 #restaurant-card {
-    background-color: teal;
+    background: transparent;
     font-size: 25px; 
     width: 60%;
     margin: auto;
     border-radius: 10px;
+    
 }
 #restaurant-distance {
     color: white;
@@ -625,6 +627,7 @@ form {
 
 #dropdown2 {
   width: 35%;
+  margin: 0 auto;
 }
 
 #right-background-card {
