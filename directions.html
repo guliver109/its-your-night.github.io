@@ -10,7 +10,6 @@
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyDFDILgYTDqnhh210NvOpXm4EYjFlBke4g"></script>
     <script defer type="text/javascript" src="assets/javascript/mapTest.js"></script>
     <link rel="stylesheet" href="./assets/css/maps.css">
-    <!-- <link rel="stylesheet" href="./assets/css/style.css"> -->
 
     <title>Geo Location Map</title>
 </head>
@@ -29,56 +28,56 @@
     <!--style is css-->
     <!--form dispaly div-->
     <!-- <label> -->
-        <!-- <form action="#" onSubmit="calcRoute();return false;" id="routeForm"> -->
-            <!--form dispaly div-->
-            <!-- <label> -->
-                <!-- From: <br /> -->
-                <!-- <input type="text" id="routeStart" value="From"> -->
-                <!-- <a href="#" class="autoLink" style="display: none;">Or: Use current location: <span>not found</span></a> -->
-            <!-- </label> -->
-            <label>
+    <!-- <form action="#" onSubmit="calcRoute();return false;" id="routeForm"> -->
+    <!--form dispaly div-->
+    <!-- <label> -->
+    <!-- From: <br /> -->
+    <!-- <input type="text" id="routeStart" value="From"> -->
+    <!-- <a href="#" class="autoLink" style="display: none;">Or: Use current location: <span>not found</span></a> -->
+    <!-- </label> -->
+    <label>
+        <!--form dispaly div-->
+        <label>
+            <form action="#" onSubmit="calcRoute();return false;" id="routeForm">
                 <!--form dispaly div-->
-                <label>
-                    <form action="#" onSubmit="calcRoute();return false;" id="routeForm">
-                        <!--form dispaly div-->
-                        <div class="start-end">
-                            <label>
-                                <label id="label-1">
-                                    From:
-                                </label>
-                                <a href="#" class="autoLink" style="display: none;">Or: Use current location: <span>not
-                                        found</span></a>
-                                <br>
-                                <input type="text" id="route-start" value="Start Point">
-                            </label>
-                            <label id="restaurant-name"></label>
-                            <label id="venue-name"></label>
-                            <label>
-                                <br>
-                                <input type="text" id="route-end" value="End Point">
-                            </label>
-                        </div>
-                        <div class="radio-btn">
-                            <label><input type="radio" name="travelMode" value="DRIVING" checked /> Driving</label>
-                            <label><input type="radio" name="travelMode" value="BICYCLING" /> Bicylcing</label>
-                            <label><input type="radio" name="travelMode" value="TRANSIT" /> Public transport</label>
-                            <label><input type="radio" name="travelMode" value="WALKING" /> Walking</label>
-                        </div>
-                        <input type="submit" value="Calculate route" id="calc-route">
+                <div class="start-end">
+                    <label>
+                        <label id="label-1"></label>
+                        <a href="#" class="autoLink" style="display: none;">Or: Use current location: <span>not
+                                found</span></a>
                         <br>
-                        <!-- <input type="text" id="routeEnd" value="To"> -->
-                </label>
-                <!-- <label><input type="radio" name="travelMode" value="DRIVING" checked /> Driving</label>
+                        <input type="text" id="route-start" value="Start Point">
+                    </label>
+                    <br>
+                    <label id="restaurant-name">Restaurant</label>
+                    <br>
+                    <label id="venue-name">Venue</label>
+                    <label>
+                        <br>
+                        <input type="text" id="route-end" value="End Point">
+                    </label>
+                </div>
+                <input type="submit" value="Calculate route" id="calc-route">
+                <br>
+                <!-- <input type="text" id="routeEnd" value="To"> -->
+        </label>
+        <!-- <label><input type="radio" name="travelMode" value="DRIVING" checked /> Driving</label>
                 <label><input type="radio" name="travelMode" value="BICYCLING" /> Bicylcing</label>
                 <label><input type="radio" name="travelMode" value="TRANSIT" /> Public transport</label>
                 <label><input type="radio" name="travelMode" value="WALKING" /> Walking</label> -->
-                
-                <button class="button" data="restaurant">restaurants finder</button>
-                <!--container to display the direction details-->
-                <div id="directionsPanel">
-
-                    Enter a starting point and click "Show route".
                 </div>
                 <!--initialization code is executed-->
                 <!--this would initialize whole map-->
                 <!-- <body onLoad="initialize()"></body> -->
+        <span class="button" data="restaurant"></span>
+        <!--container to display the direction details-->
+        <div id="directionsPanel">
+
+        </div>
+        <!--initialization code is executed-->
+        <!--this would initialize whole map-->
+        <!-- <body onLoad="initialize()"></body> -->
+
+</body>
+
+</html>
