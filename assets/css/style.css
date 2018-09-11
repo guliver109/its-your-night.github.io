@@ -271,6 +271,7 @@ button {
 
 .input-field {
     margin: 0 auto;
+    
 }
 
 .card-action {
@@ -295,6 +296,7 @@ button {
 #search-btn {
     margin-top: 13px;
     height: 25px;
+    margin-left: 10px;
 }
 
 .input-field {
@@ -304,7 +306,8 @@ button {
 
 #search-field {
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
+    text-align: center;
     flex-flow: row wrap;
     align-items: flex-end;
     font-size: 18px;
@@ -573,9 +576,11 @@ form {
 
  .rest-div {
     height: 120px;
-    width: 700px;
+    width: 580px;
     margin-top: 10px 0px 5px 50px;
     background-color: rgba(247, 203, 58, 0.5);
+    display: inline-block;
+    margin: 10px!important;
   }
 
   .rest-name {
@@ -633,5 +638,6 @@ form {
 #right-background-card {
   padding: 0;
 }
+
 
 
