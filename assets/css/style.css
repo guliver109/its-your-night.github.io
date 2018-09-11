@@ -172,7 +172,7 @@ button {
 
 
 #left-col {
-    height: 200px;
+    height: 100px;
     margin: 0 auto;
     display: inline-block;
 }
@@ -277,7 +277,7 @@ button {
 }
 
 .card-content {
-    padding: 24px 24px 24px 24px !important;
+    /* padding: 24px 24px 24px 24px !important; */
     font-size: 25px;
 }
 
@@ -287,6 +287,8 @@ button {
 
 #artist-input {
     height: 25px;
+    border-radius: 10px;
+    text-align: center;
 }
 
 #search-btn {
@@ -315,6 +317,9 @@ form {
 #restaurant-card {
     background-color: teal;
     font-size: 25px; 
+    width: 60%;
+    margin: auto;
+    border-radius: 10px;
 }
 #restaurant-distance {
     color: white;
@@ -611,6 +616,16 @@ form {
   text-align: center;
 }
  #dropdown1 {
-   width: 60%;
+   width: 35%;
   margin: auto;
 }
+
+#dropdown2 {
+  width: 35%;
+}
+
+#right-background-card {
+  padding: 0;
+}
+
+
