@@ -330,7 +330,18 @@ form {
     color: white;
 }
 
-/* #neon-button {
+.venue-box {
+    background-color: rgb(78, 78, 255, 0.5);
+    margin: 5px;
+    text-align: center;
+    width: 30%;
+    display: inline-block;
+
+    /* border: solid black 5px; */
+    border-radius: 5px;
+}
+
+/*#neon-button {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -341,7 +352,7 @@ form {
     border-radius: 8px;
     border: 3px solid teal(0, 40, 70);
     cursor: pointer;
-  }
+  }*/
   
   #neon-button:hover {
     animation: border-flicker 2s linear forwards;
