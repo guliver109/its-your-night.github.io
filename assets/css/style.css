@@ -1,3 +1,6 @@
+
+/* ---------------TWINKLE BACKGROUND ------------------- */
+
 * {
     margin: 0;
     padding: 0;
@@ -11,9 +14,11 @@ header {
     position:relative;
     z-index:5;
 }
+
 h2{
     margin-top: 30px;
     text-align: center;
+
 }
 header h2{
     font-size: 22px;
@@ -71,14 +76,12 @@ header a, a:visited {
   animation:move-twink-back 200s linear infinite;
 } 
 
+/* --------------------WIREFRAME -------------------------------------- */
+
 body {
 
-    /* background: url("../images/background/ no-repeat fixed center; */
-
     background-size: cover;
-
     text-align: left;
-
     color: #ffffff;
   }
 
@@ -120,13 +123,54 @@ button {
     color: white;
 }
 
+/* ------------------NAV SIGN TEXT -------------------------- */
+.sign {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+__word {
+      font-size: 5.6rem;
+      text-align: center;
+      line-height: 1;
+      color: #c6e2ff;
+      animation: neon .08s ease-in-out infinite alternate;
+
+} 
+  
+  /*----------Animation Keyframes for SIGN ----------------- --*/
+  
+  /* // animation */
+  
+  @keyframes neon {
+    from {
+      text-shadow:
+      0 0 6px rgba(202,228,225,0.92),
+      0 0 30px rgba(202,228,225,0.34),
+      0 0 12px rgba(30,132,242,0.52),
+      0 0 21px rgba(30,132,242,0.92),
+      0 0 34px rgba(30,132,242,0.78),
+      0 0 54px rgba(30,132,242,0.92);
+    }
+    to {
+      text-shadow:
+      0 0 6px rgba(202,228,225,0.98),
+      0 0 30px rgba(202,228,225,0.42),
+      0 0 12px rgba(30,132,242,0.58),
+      0 0 22px rgba(30,132,242,0.84),
+      0 0 38px rgba(30,132,242,0.88),
+      0 0 60px rgba(30,132,242,1);
+    }
+  }
+
 /* .nav-wrapper {
     background-color: #e42971;
 } */
 
-.icon fa-info-circle {
-    text-align: right;
-}
 
 .input-field {
     position: fixed; 
@@ -172,6 +216,10 @@ form {
     width: 100%;
 }
 
+#restaurant-card {
+    background-color: teal;
+    font-size: 25px; 
+}
 #restaurant-distance {
     color: white;
 }
