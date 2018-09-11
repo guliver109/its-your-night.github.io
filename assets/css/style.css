@@ -253,14 +253,14 @@ button {
  
 
 /* --------------------------------------NEON - ABOUT SIGN ---------------------------- */
-.aboutButton { 
+/* .aboutButton { 
     margin: 15px 15px 0 0;
     font-size: 25px;
     font-family: 'Futura';
     color: #fff;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 55px #ff0080, 0 0 75px #ff0080;
     text-align: right;
-} 
+}  */
 
 /* ----------------------------------------------------------- */
 
@@ -268,6 +268,9 @@ button {
     background-color: #e42971;
 } */
 
+#about {
+  color: white; 
+}
 
 .input-field {
     margin: 0 auto;
@@ -354,9 +357,9 @@ form {
     cursor: pointer;
   }*/
   
-  #neon-button:hover {
-    animation: border-flicker 2s linear forwards;
-  }
+  /* #neon-button:hover { */
+    /* animation: border-flicker 2s linear forwards; */
+  
    */
   h1 {
     /* font-family: "Open Sans";
@@ -370,14 +373,23 @@ form {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 55px #ff0080, 0 0 75px #ff0080;
     text-align: center;
   }
+
+  #neon-button { 
+    margin: 15px 15px 0 0;
+    font-size: 25px;
+    font-family: 'Futura';
+    color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 55px #ff0080, 0 0 75px #ff0080;
+    text-align: center;
+} 
   
-  #neon-button:hover h1 {
+  /* #neon-button:hover h1 {
     animation: text-flicker 2s linear forwards;
   }
   
   #neon-button:hover .first {
     animation: letter-flicker 3s linear infinite;
-  }
+  } */
   
   @keyframes text-flicker {
     2% { 
@@ -568,15 +580,13 @@ form {
 @-webkit-keyframes blink { 50% { border-color: purple; }  }
 
 .venue-box {
-  /* background-color: rgb(78, 78, 255, 0.5); */
-  background: #78E0F2; 
+  background-color: rgba(140, 218, 240, 0.616);
   margin: 25px;
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: center; 
   width: 30%;
   display: inline-block;
-  opacity: 0.7;
   width: 300px;
   height: 300px;
   border-radius: 10px;

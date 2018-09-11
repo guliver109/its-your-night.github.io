@@ -240,7 +240,7 @@ $(document).ready(function () {
     //---------------------EVENTS LISTENER--------------------------
     //--------------------------------------------------------------
 
-    $("#artist-input").on("click", function() {   //changes artist search box opacity 1 when user clicks on input box
+    $("#artist-input").on("click", function() {  //changes artist search box opacity 1 when user clicks on input box
         $("#artist-input").val("");
         $("#left-card").css("opacity", "1.0");
     })
@@ -249,6 +249,7 @@ $(document).ready(function () {
         // $("#left-card").css("background-color", "#e42971");
         $("#search-field").show();
         $("#neon-button").hide();
+        $("#about").hide();
     })
 
     $("#dropdown2").change(function(){        //click event when radius is selected
