@@ -122,14 +122,16 @@ $(document).ready(function () {
 
         for (var j = 0; j < response.routes[0].legs.length; j++) {
           var newDiv = $("<div>").addClass("div-style");
+          var newH1 = $("<h3>").text("Start: " + response.routes[0].legs[j].start_address);
+          var newH2 = $("<h3>").text("End: " + response.routes[0].legs[j].end_address);
           for (var i = 0; i <response.routes[0].legs[j].steps.length; i++) {
-            // if(i === 0) {
-            //   var newH = $("<div>")
-            // }
             newDiv.append(response.routes[0].legs[j].steps[i].html_instructions, "<br/>");
           }
-          $("#routing-instructions").append(newDiv);
+          
+          $("#routing-instructions").append(newH1, newH2, newDiv);
         }
+
+
 
 
 
