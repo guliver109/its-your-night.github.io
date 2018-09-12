@@ -56,7 +56,6 @@ $(document).ready(function () {
             this.googleRestaurant();
             this.googleVenue();
             this.getDirection();
-            // this.displayDirections();
         }
       });
     }
@@ -126,9 +125,6 @@ $(document).ready(function () {
           for (var i = 0; i <response.routes[0].legs[j].steps.length; i++) {
             // var newP = $("<p>").text(response.routes[0].legs[j].steps[i].html_instructions);
             newDiv.append(response.routes[0].legs[j].steps[i].html_instructions);
-            // $("#routing-instructions").append(response.routes[0].legs[j].steps[i].html_instructions);
-            console.log(response.routes[0].legs[j].steps[i].html_instructions);
-            var brTag = $("<br>");
           }
           $("#routing-instructions").append(newDiv);
         }
@@ -178,9 +174,8 @@ $(document).ready(function () {
     // }   
 
 
-    // placesObject.displayDirections();
 //getting coordinates from user input address
-    function codeAddress(address) {
+    function codeAddress(address, userInput) {
       console.log("address function");
       var cArray = [];
 
@@ -189,11 +184,18 @@ $(document).ready(function () {
         method: "GET"
     }).then(function(response) {
       // console.log(response);
-      cArray.push(response.results[0].geometry.location.lat);
-      cArray.push(response.results[0].geometry.location.lng);
+      if(userInput === "start") {
+        placesObject.currentPositionLatitude = response.results[0].geometry.location.lat;
+        placesObject.currentPositionLongitude = response.results[0].geometry.location.lng;
+      }
+      else if (userInput === "end") {
+        placesObject.endPositionLatitude = response.results[0].geometry.location.lat;
+        placesObject.endPositionLongitude = response.results[0].geometry.location.lng;
+      }
+      
     });
 
-    return cArray
+    console.log(placesObject.currentPositionLatitude);
     }
 
     placesObject.rerouting = function () {
@@ -203,23 +205,6 @@ $(document).ready(function () {
 
     }
 
-    placesObject.getCoordinates = function(start, end) {
-      if(start !== "") {
-        userStart = codeAddress(start);
-        placesObject.restLat = userStart[0]
-        placesObject.currentPositionLatitude = userStart[0];
-        placesObject.currentPositionLongitude = userStart[1];
-        console.log(userStart[0]);
-        console.log(placesObject.restLat);
-      }
-      if (end !== "") {
-        userEnd = codeAddress(end);
-        placesObject.endPositionLatitude = userEnd[0];
-        placesObject.endPositionLongitude = userEnd[1];
-        console.log(placesObject.endPositionLatitude);
-      }
-      // placesObject.rerouting();
-    }
 
     //----------------fill rest/venue div------------------------
     $("#restaurant-name").text("Restaurant: " + venueRestArray[1].name);
@@ -230,21 +215,15 @@ $(document).ready(function () {
       uStart = $("#route-start").val().trim();
       uEnd = $("#route-end").val().trim(); 
 
-      placesObject.getCoordinates(uStart,uEnd);
-      // if(uStart !== "") {
-      //   console.log("populating array")
-      //   userStart = codeAddress(uStart);
-      //   placesObject.currentPositionLatitude = userStart[0];
-      //   placesObject.currentPositionLongitude = userStart[1];
-      //   console.log(userStart);
-      //   console.log(placesObject.currentPositionLatitude);
-      // }
-      // if (uEnd !== "") {
-      //   userEnd = codeAddress(uEnd);
-      //   placesObject.endPositionLatitude = userEnd[0];
-      //   placesObject.endPositionLongitude = userEnd[1];
-      // }
-      // // placesObject.rerouting();
+      // placesObject.getCoordinates(uStart,uEnd);
+      if(uStart !== "") {
+        // console.log("populating array")
+        userStart = codeAddress(uStart, "start");
+      }
+      if (uEnd !== "") {
+        userEnd = codeAddress(uEnd, "end");
+      }
+      placesObject.rerouting();
     })
     //  console.log(placesObject);
 
