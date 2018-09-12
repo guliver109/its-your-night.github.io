@@ -135,11 +135,11 @@ body {
 
 button {
       border-radius: 5px;
-        background-color: #004a7f;
+        background-color:#78E0F2; 
         -webkit-border-radius: 10px;
         border-radius: 10px;
         border: none;
-        color: #ffffff;
+        color: black;
         cursor: pointer;
         display: inline-block;
         font-family: Arial;
@@ -154,61 +154,61 @@ button {
       }
       @-webkit-keyframes glowing {
         0% {
-          background-color: teal;
-          -webkit-box-shadow: 0 0 3px teal;
+          background-color: #78E0F2;
+          -webkit-box-shadow: 0 0 3px #78E0F2;
         }
         50% {
-          background-color: teal;
-          -webkit-box-shadow: 0 0 40px teal;
+          background-color: #78E0F2;
+          -webkit-box-shadow: 0 0 40px #78E0F2;
         }
-        100% {
-          background-color: #b20000;
-          -webkit-box-shadow: 0 0 3px #b20000;
+        100% { 
+          background-color: #ff0080;
+          -webkit-box-shadow: 0 0 3px #ff0080;
         }
       }
       
       @-moz-keyframes glowing {
         0% {
-          background-color: teal;
-          -moz-box-shadow: 0 0 3px teal;
+          background-color: #78E0F2;
+          -moz-box-shadow: 0 0 3px #78E0F2;
         }
         50% {
-          background-color: teal;
-          -moz-box-shadow: 0 0 40px teal;
+          background-color: #78E0F2;
+          -moz-box-shadow: 0 0 40px #78E0F2;
         }
         100% {
-          background-color: #b20000;
-          -moz-box-shadow: 0 0 3px #b20000;
+          background-color: #ff0080;
+          -moz-box-shadow: 0 0 3px #ff0080;
         }
       }
       
       @-o-keyframes glowing {
         0% {
-          background-color: #b20000;
-          box-shadow: 0 0 3px #b20000;
+          background-color: #ff0080;
+          box-shadow: 0 0 3px #ff0080;
         }
         50% {
-          background-color: teal;
-          box-shadow: 0 0 40px teal;
+          background-color: #78E0F2;
+          box-shadow: 0 0 40px #78E0F2;
         }
         100% {
-          background-color: #c44747;
-          box-shadow: 0 0 3px #b20000;
+          background-color: #ff0080;
+          box-shadow: 0 0 3px #ff0080;
         }
       }
       
       @keyframes glowing {
         0% {
-          background-color: #b20000;
-          box-shadow: 0 0 3px #b20000;
+          background-color: #ff0080;
+          box-shadow: 0 0 3px #ff0080;
         }
         50% {
-          background-color: teal;
-          box-shadow: 0 0 40px teal;
+          background-color: #78E0F2;
+          box-shadow: 0 0 40px #78E0F2;
         }
         100% {
-          background-color: #b20000;
-          box-shadow: 0 0 3px #b20000;
+          background-color: #ff0080;
+          box-shadow: 0 0 3px #ff0080;
         }
       }
 /* --------------------------------------------------- */
@@ -257,11 +257,13 @@ button {
 
 #about {
   color: white; 
+  width: auto;
+  text-align: center;
+  font-weight: bold; 
 }
 
 .input-field {
     margin: 0 auto;
-    
 }
 
 .card-action {
@@ -281,12 +283,14 @@ button {
     height: 25px;
     border-radius: 10px;
     text-align: center;
+    margin: auto; 
 }
 
 #search-btn {
     margin-top: 13px;
     height: 25px;
     margin-left: 10px;
+    margin: auto; 
 }
 
 .input-field {
@@ -320,17 +324,11 @@ form {
     color: white;
 }
 
-.venue-box {
-    background-color: rgb(78, 78, 255, 0.5);
-    margin: 5px;
-    text-align: center;
-    width: 30%;
-    display: inline-block;
-
-    /* border: solid black 5px; */
-    border-radius: 5px;
+#artistNotTouring {
+  font-size: 40px;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 55px #ff0080, 0 0 75px #ff0080;
 }
-
 /*#neon-button {
     position: absolute;
     top: 50%;
@@ -564,21 +562,25 @@ form {
   }
 
 /* -------------------------VENUE BOX / BORDER BLINK -------------------------------------- */
-@-webkit-keyframes blink { 50% { border-color: purple; }  }
+
+
+@-webkit-keyframes blink { 50% { border-color: rgb(150, 8, 81); }  }
 
 .venue-box {
-  background-color: rgba(140, 218, 240, 0.616);
+  background: #78E0F2; 
   margin: 25px;
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: center; 
-  width: 30%;
+  /* width: 30%; */
   display: inline-block;
+  opacity: 0.7;
   width: 300px;
   height: 300px;
   border-radius: 10px;
   font-size: 30px;
-  border: 5px solid pink;
+  border: 5px solid rgb(218, 74, 194);
+
   -webkit-animation: blink .5s step-end infinite alternate; 
 } 
 

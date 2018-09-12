@@ -30,7 +30,7 @@ $(document).ready(function () {
             // console.log(response);
             if(response.length === 0) {
                 $(".dropdown-disp").hide();
-                var newP = $("<p>").text("Artist currently not touring")
+                var newP = $("<p>").text("Artist currently not touring").attr("id", "artistNotTouring");
                 $("#content-display").append(newP);
                 artistFound = false;
             }
