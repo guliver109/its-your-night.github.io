@@ -5,7 +5,9 @@ $(document).ready(function () {
   //retrieving coordinates from localStorage
   var coord = localStorage.getItem("coordinates");
   //console.log(coord);
+
   var venueRestArray = JSON.parse(coord);
+
   var coordArray = [ //array of objects
     // current location coords
     {
@@ -128,5 +130,12 @@ $(document).ready(function () {
         });
       });
     }
+
+    //----------------fill rest/venue div------------------------
+    $("#restaurant-name").text("Restaurant: " + venueRestArray[1].name);
+    $("#venue-name").text("Venue: " + venueRestArray[0].name);
+    
+    console.log(venueRestArray[0].name);
+
   
  });

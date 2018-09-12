@@ -169,3 +169,12 @@ button {
   z-index: 1; 
   margin-top: 40px;
 }
+
+#option-container {
+  position: absolute;
+  background-color: lightblue;
+}
+
+#geo-l {
+  color: white;
+}
