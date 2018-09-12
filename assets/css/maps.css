@@ -170,10 +170,13 @@ button {
   margin-top: 40px;
 }
 
-#option-container {
-  position: relative;
-  background-color: rgb(167, 220, 238, 0.3);
-}
+#routing-instructions {
+  position: absolute;
+  background-color: lightblue;
+  width: 70%;
+  margin-top: 20px;
+  margin-left: 181px;
+  }
 
 #geo-l {
   color: white;
