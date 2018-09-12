@@ -120,6 +120,8 @@ $(document).ready(function () {
           placesObject.route[i] = response.routes[0].legs[i];
         }
 
+        //--------------displaying directions----------------------
+        $("#routing-instructions").empty();
         for (var j = 0; j < response.routes[0].legs.length; j++) {
           var newDiv = $("<div>");
           for (var i = 0; i <response.routes[0].legs[j].steps.length; i++) {
@@ -133,6 +135,7 @@ $(document).ready(function () {
 
         var directionsDisplay = new google.maps.DirectionsRenderer();
         directionsDisplay.setMap(placesObject.map);
+        // directionsDisplay.setMap(null);
         var directionsService = new google.maps.DirectionsService();
         
         var request = {
@@ -157,22 +160,6 @@ $(document).ready(function () {
     }
 
 //---------------------------------------------------------------------------
-//display all directions to html
-    // placesObject.displayDirections = function() {
-    //   console.log("displaying route object");
-    //   // console.log(this.route);
-    //   // console.log(this.route.length);
-    //   for (var j = 0; j < 3; j++) {
-    //     var newDiv = $("<div>");
-    //     for (var i = 0; i <this.route[j].steps.length; i++) {
-    //       var newP = $("<p>").text(`${this.route[j].steps[i].html_instructions}`);
-    //       newDiv.append(newP);
-    //       console.log(this.route[j].steps[i].html_instructions);
-    //     }
-    //     $("#routing-instructions").append(newDiv);
-    //   }
-    // }   
-
 
 //getting coordinates from user input address
     function codeAddress(address, userInput) {
@@ -194,8 +181,6 @@ $(document).ready(function () {
       }
       
     });
-
-    console.log(placesObject.currentPositionLatitude);
     }
 
     placesObject.rerouting = function () {
