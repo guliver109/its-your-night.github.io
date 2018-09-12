@@ -107,9 +107,11 @@ $(document).ready(function () {
   
   placesObject.getDirection = function () {
 
+    console.log(placesObject.currentPositionLatitude);
+
     var proxy = "https://cors-anywhere.herokuapp.com/"
+      var directionsURL = `${proxy}https://maps.googleapis.com/maps/api/directions/json?origin=${this.currentPositionLatitude},${this.currentPositionLongitude}&destination=${this.endPositionLatitude},${this.endPositionLongitude}&waypoints=${this.restLat},${this.restLong}|${this.venueLat},${this.venueLong}&key=${APIKey}`;      
     
-    var directionsURL = `${proxy}https://maps.googleapis.com/maps/api/directions/json?origin=${this.currentPositionLatitude},${this.currentPositionLongitude}&destination=${this.endPositionLatitude},${this.endPositionLongitude}&waypoints=${this.restLat},${this.restLong}|${this.venueLat},${this.venueLong}&key=${APIKey}`;
         $.ajax({
           url: directionsURL,
           method: "GET"
@@ -174,16 +176,17 @@ $(document).ready(function () {
       if(userInput === "start") {
         placesObject.currentPositionLatitude = response.results[0].geometry.location.lat;
         placesObject.currentPositionLongitude = response.results[0].geometry.location.lng;
-        cArray.push(response.results[0].geometry.location.lat);
-        cArray.push(response.results[0].geometry.location.lng)
       }
-      else if (userInput === "end") {
+      if (userInput === "end") {
         placesObject.endPositionLatitude = response.results[0].geometry.location.lat;
         placesObject.endPositionLongitude = response.results[0].geometry.location.lng;
-      }
-
-      // return cArray;
-      
+      } 
+    }).then(function(){
+      console.log("placesObject",placesObject)
+      placesObject.initialize();
+      placesObject.rerouting();
+    }).catch(err => {
+      console.log(err)
     });
 
     // console.log(placesObject.currentPositionLatitude);
@@ -204,23 +207,22 @@ $(document).ready(function () {
 
     $("#calc-route").on("click", function(event) {
       event.preventDefault();
+      for (var i = 0; i < directionsDisplay.length; i++) {
+        directionsDisplay[i].setMap(null);
+      }
+    // clear out the directionsDisplay array
+      directionsDisplay = [];
       uStart = $("#route-start").val().trim();
       uEnd = $("#route-end").val().trim(); 
-
-      // placesObject.getCoordinates(uStart,uEnd);
-      if(uStart !== "") {
-        // console.log("populating array")
-        // userStart = 
+      console.log(uStart, uEnd)
+      if(uStart) {
         codeAddress(uStart, "start");
-        // placesObject.currentPositionLatitude = userStart[0];
-        // console.log("array " + userStart);
-        // console.log(placesObject.currentPositionLatitude);
       }
-      if (uEnd !== "") {
-        userEnd = codeAddress(uEnd, "end");
+      if (uEnd) {
+        codeAddress(uEnd, "end");
       }
-      placesObject.initialize();
-      placesObject.rerouting();
+
+
     })
     
 
