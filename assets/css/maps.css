@@ -171,10 +171,19 @@ button {
 }
 
 #option-container {
-  position: absolute;
+  position: relative;
   background-color: rgb(167, 220, 238, 0.3);
 }
 
 #geo-l {
   color: white;
+}
+
+#directionsPanel {
+  position: relative;
+  background-color: rgba(159, 233, 227, 0.3);
+}
+
+.row {
+  position: absolute;
 }
