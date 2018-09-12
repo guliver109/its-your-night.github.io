@@ -123,7 +123,9 @@ $(document).ready(function () {
         for (var j = 0; j < response.routes[0].legs.length; j++) {
           var newDiv = $("<div>").addClass("div-style");
           for (var i = 0; i <response.routes[0].legs[j].steps.length; i++) {
-            // var newP = $("<p>").text(response.routes[0].legs[j].steps[i].html_instructions);
+            // if(i === 0) {
+            //   var newH = $("<div>")
+            // }
             newDiv.append(response.routes[0].legs[j].steps[i].html_instructions, "<br/>");
           }
           $("#routing-instructions").append(newDiv);
