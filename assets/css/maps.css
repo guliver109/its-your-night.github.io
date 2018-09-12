@@ -172,7 +172,7 @@ button {
 
 #option-container {
   position: absolute;
-  background-color: lightblue;
+  background-color: rgb(167, 220, 238, 0.3);
 }
 
 #geo-l {
