@@ -122,11 +122,13 @@ $(document).ready(function () {
 
         for (var j = 0; j < response.routes[0].legs.length; j++) {
           var newDiv = $("<div>").addClass("div-style");
+          var newH1 = $("<h3>").text("Start: " + response.routes[0].legs[j].start_address);
+          var newH2 = $("<h3>").text("End: " + response.routes[0].legs[j].end_address);
           for (var i = 0; i <response.routes[0].legs[j].steps.length; i++) {
-            // var newP = $("<p>").text(response.routes[0].legs[j].steps[i].html_instructions);
             newDiv.append(response.routes[0].legs[j].steps[i].html_instructions, "<br/>");
           }
-          $("#routing-instructions").append(newDiv);
+          
+          $("#routing-instructions").append(newH1, newH2, newDiv);
         }
 
 
@@ -155,23 +157,6 @@ $(document).ready(function () {
         });
       });
     }
-
-//---------------------------------------------------------------------------
-//display all directions to html
-    // placesObject.displayDirections = function() {
-    //   console.log("displaying route object");
-    //   // console.log(this.route);
-    //   // console.log(this.route.length);
-    //   for (var j = 0; j < 3; j++) {
-    //     var newDiv = $("<div>");
-    //     for (var i = 0; i <this.route[j].steps.length; i++) {
-    //       var newP = $("<p>").text(`${this.route[j].steps[i].html_instructions}`);
-    //       newDiv.append(newP);
-    //       console.log(this.route[j].steps[i].html_instructions);
-    //     }
-    //     $("#routing-instructions").append(newDiv);
-    //   }
-    // }   
 
 
 //getting coordinates from user input address
