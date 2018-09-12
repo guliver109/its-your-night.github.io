@@ -160,27 +160,10 @@ $(document).ready(function () {
       });
     }
 
-//---------------------------------------------------------------------------
-//display all directions to html
-    // placesObject.displayDirections = function() {
-    //   console.log("displaying route object");
-    //   // console.log(this.route);
-    //   // console.log(this.route.length);
-    //   for (var j = 0; j < 3; j++) {
-    //     var newDiv = $("<div>");
-    //     for (var i = 0; i <this.route[j].steps.length; i++) {
-    //       var newP = $("<p>").text(`${this.route[j].steps[i].html_instructions}`);
-    //       newDiv.append(newP);
-    //       console.log(this.route[j].steps[i].html_instructions);
-    //     }
-    //     $("#routing-instructions").append(newDiv);
-    //   }
-    // }   
-
 
 //getting coordinates from user input address
     function codeAddress(address, userInput) {
-      console.log("address function");
+      // console.log("address function");
       var cArray = [];
 
       $.ajax({
@@ -191,18 +174,23 @@ $(document).ready(function () {
       if(userInput === "start") {
         placesObject.currentPositionLatitude = response.results[0].geometry.location.lat;
         placesObject.currentPositionLongitude = response.results[0].geometry.location.lng;
+        cArray.push(response.results[0].geometry.location.lat);
+        cArray.push(response.results[0].geometry.location.lng)
       }
       else if (userInput === "end") {
         placesObject.endPositionLatitude = response.results[0].geometry.location.lat;
         placesObject.endPositionLongitude = response.results[0].geometry.location.lng;
       }
+
+      // return cArray;
       
     });
 
-    console.log(placesObject.currentPositionLatitude);
+    // console.log(placesObject.currentPositionLatitude);
     }
 
     placesObject.rerouting = function () {
+      $("#routing-instructions").empty();
       this.googleCurrentPosition();
       this.googleEnd();
       this.getDirection();
@@ -222,14 +210,19 @@ $(document).ready(function () {
       // placesObject.getCoordinates(uStart,uEnd);
       if(uStart !== "") {
         // console.log("populating array")
-        userStart = codeAddress(uStart, "start");
+        // userStart = 
+        codeAddress(uStart, "start");
+        // placesObject.currentPositionLatitude = userStart[0];
+        // console.log("array " + userStart);
+        // console.log(placesObject.currentPositionLatitude);
       }
       if (uEnd !== "") {
         userEnd = codeAddress(uEnd, "end");
       }
+      placesObject.initialize();
       placesObject.rerouting();
     })
-    //  console.log(placesObject);
+    
 
   
  });
