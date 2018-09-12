@@ -237,6 +237,7 @@ button {
 #content-display {
     text-align: center;
     margin-bottom: -56px;
+    font: Avantgarde;
     
 }
 #right-card {
@@ -260,6 +261,7 @@ button {
   width: auto;
   text-align: center;
   font-weight: bold; 
+  font: didot; 
 }
 
 .input-field {
@@ -578,8 +580,9 @@ form {
   width: 300px;
   height: 300px;
   border-radius: 10px;
-  font-size: 30px;
+  font-size: 22px;
   border: 5px solid rgb(218, 74, 194);
+  font-display: auto;
 
   -webkit-animation: blink .5s step-end infinite alternate; 
 } 
@@ -612,14 +615,38 @@ form {
 
  /* ---------------------------RESTAURANT DISPLAY STYLE---------------------------- */
 
+ @-webkit-keyframes blink { 50% { border-color: rgb(150, 8, 81); }  }
+
+.row-rest-div {
+  background: #78E0F2; 
+  text-align: center; 
+  display: inline-block;
+  opacity: 0.7;
+  border-radius: 10px;
+  border: 5px solid rgb(218, 74, 194);
+  font-display: auto;
+
+  -webkit-animation: blink .5s step-end infinite alternate; 
+} 
+
+@-webkit-keyframes blink { 50% { border-color: rgb(150, 8, 81); }  }
+
  .rest-div {
     height: 120px;
     width: 580px;
     margin-top: 10px 0px 5px 50px;
-    background-color: rgba(247, 203, 58, 0.5);
+    background: #78E0F2;
     display: inline-block;
     margin: 10px!important;
+    border: 5px solid rgb(218, 74, 194);
+    font-display: auto;
+
+    -webkit-animation: blink .5s step-end infinite alternate;
   }
+
+  #restaurant-div {
+  margin-top: 30px;
+}
 
   .rest-name {
     font-size: 24px;
@@ -643,10 +670,6 @@ form {
   img.responsive-img, video.responsive-video {
     max-width: 100px;
     height: 100px;
-}
-
-#restaurant-div {
-  margin-top: 30px;
 }
 
 .titleDiv-style {
