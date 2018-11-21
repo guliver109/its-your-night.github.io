@@ -126,12 +126,6 @@ $(document).ready(function () {
           for (var i = 0; i <response.routes[0].legs[j].steps.length; i++) {
             // var newP = $("<p>").text(response.routes[0].legs[j].steps[i].html_instructions);
             newDiv.append(response.routes[0].legs[j].steps[i].html_instructions);
-<<<<<<< HEAD
-=======
-            // $("#routing-instructions").append(response.routes[0].legs[j].steps[i].html_instructions);
-            console.log(response.routes[0].legs[j].steps[i].html_instructions);
-            var brTag = $("<br>");
->>>>>>> last-look
           }
           $("#routing-instructions").append(newDiv);
         }
@@ -181,14 +175,8 @@ $(document).ready(function () {
     // }   
 
 
-<<<<<<< HEAD
 //getting coordinates from user input address
     function codeAddress(address, userInput) {
-=======
-    // placesObject.displayDirections();
-//getting coordinates from user input address
-    function codeAddress(address) {
->>>>>>> last-look
       console.log("address function");
       var cArray = [];
 
@@ -197,7 +185,6 @@ $(document).ready(function () {
         method: "GET"
     }).then(function(response) {
       // console.log(response);
-<<<<<<< HEAD
       if(userInput === "start") {
         placesObject.currentPositionLatitude = response.results[0].geometry.location.lat;
         placesObject.currentPositionLongitude = response.results[0].geometry.location.lng;
@@ -210,13 +197,6 @@ $(document).ready(function () {
     });
 
     console.log(placesObject.currentPositionLatitude);
-=======
-      cArray.push(response.results[0].geometry.location.lat);
-      cArray.push(response.results[0].geometry.location.lng);
-    });
-
-    return cArray
->>>>>>> last-look
     }
 
     placesObject.rerouting = function () {
@@ -226,26 +206,6 @@ $(document).ready(function () {
 
     }
 
-<<<<<<< HEAD
-=======
-    placesObject.getCoordinates = function(start, end) {
-      if(start !== "") {
-        userStart = codeAddress(start);
-        placesObject.restLat = userStart[0]
-        placesObject.currentPositionLatitude = userStart[0];
-        placesObject.currentPositionLongitude = userStart[1];
-        console.log(userStart[0]);
-        console.log(placesObject.restLat);
-      }
-      if (end !== "") {
-        userEnd = codeAddress(end);
-        placesObject.endPositionLatitude = userEnd[0];
-        placesObject.endPositionLongitude = userEnd[1];
-        console.log(placesObject.endPositionLatitude);
-      }
-      // placesObject.rerouting();
-    }
->>>>>>> last-look
 
     //----------------fill rest/venue div------------------------
     $("#restaurant-name").text("Restaurant: " + venueRestArray[1].name);
@@ -256,7 +216,6 @@ $(document).ready(function () {
       uStart = $("#route-start").val().trim();
       uEnd = $("#route-end").val().trim(); 
 
-<<<<<<< HEAD
       // placesObject.getCoordinates(uStart,uEnd);
       if(uStart !== "") {
         // console.log("populating array")
@@ -266,23 +225,6 @@ $(document).ready(function () {
         userEnd = codeAddress(uEnd, "end");
       }
       placesObject.rerouting();
-=======
-      placesObject.getCoordinates(uStart,uEnd);
-      // if(uStart !== "") {
-      //   console.log("populating array")
-      //   userStart = codeAddress(uStart);
-      //   placesObject.currentPositionLatitude = userStart[0];
-      //   placesObject.currentPositionLongitude = userStart[1];
-      //   console.log(userStart);
-      //   console.log(placesObject.currentPositionLatitude);
-      // }
-      // if (uEnd !== "") {
-      //   userEnd = codeAddress(uEnd);
-      //   placesObject.endPositionLatitude = userEnd[0];
-      //   placesObject.endPositionLongitude = userEnd[1];
-      // }
-      // // placesObject.rerouting();
->>>>>>> last-look
     })
     //  console.log(placesObject);
 
