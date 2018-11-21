@@ -262,6 +262,7 @@ button {
   text-align: center;
   font-weight: bold; 
   font: didot; 
+  font-size: 20px
 }
 
 .input-field {
@@ -586,6 +587,13 @@ form {
 
   -webkit-animation: blink .5s step-end infinite alternate; 
 } 
+
+h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0px 5px 0px;
+  color: rgb(231, 217, 154)
+ }
 
 /* @-webkit-keyframes venue-box {    
   from, to {    
