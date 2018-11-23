@@ -1,0 +1,208 @@
+/* Screens Resolution :
+-------------------------------------------------------------------------- */
+@media only screen and (max-width: 1300px) {
+	
+    #directionsPanel {
+        width: 100%;
+    }
+    #option-container {
+        width: 100%;
+    }
+}
+
+
+/* Screens Resolution : 992px
+-------------------------------------------------------------------------- */
+@media only screen and (max-width: 1200px) {
+	
+    #directionsPanel {
+        width: 100%;
+    }
+    #option-container {
+        width: 100%;
+    }
+}
+
+/* Screens Resolution : 992px
+-------------------------------------------------------------------------- */
+@media only screen and (max-width: 992px) {
+	
+	.rest-div {
+        width: 100%;
+    }
+    #directionsPanel {
+        width: 100%;
+    }
+    #option-container {
+        width: 100%;
+    }
+    #restaurant-card {
+        width: 70%;
+    }
+    #dropdown2 {
+        width: 70%;
+    }
+    #dropdown1 {
+        width: 70%;
+    }
+
+}
+
+
+/* Screens Resolution : 767px
+-------------------------------------------------------------------------- */
+@media only screen and (max-width: 767px) {
+	
+    .rest-div {
+        width: 100%;
+    }
+    #directionsPanel {
+        width: 100%;
+    }
+    #option-container {
+        width: 100%;
+    }
+    #restaurant-card {
+        width: 80%;
+    }
+    #dropdown2 {
+        width: 80%
+    }
+    #dropdown1 {
+        width: 70%;
+    }
+}
+
+/* Screens Resolution : 575px
+-------------------------------------------------------------------------- */
+@media only screen and (max-width: 575px) {
+
+	.rest-div {
+        width: 100%;
+    }
+    #directionsPanel {
+        width: 100%;
+    }
+    #option-container {
+        width: 100%;
+    }
+    .gm-err-content {
+        margin-right: 5px;
+    }
+    #restaurant-card {
+        width: 90%;
+    }
+    #dropdown2 {
+        width: 90%
+    }
+    #dropdown1 {
+        width: 70%;
+    }
+}
+
+/* Screens Resolution : 479px
+-------------------------------------------------------------------------- */
+@media only screen and (max-width: 479px) {
+    /* ovaj */
+    .rest-div {
+        width: 100%;
+    }
+    #map_canvas {
+        margin-top: 60px;
+        background-color: aliceblue;
+    }
+    #directionsPanel {
+        width: 100%;
+    }
+    #option-container {
+        width: 100%;
+    }
+    .gm-err-content {
+        margin-right: 5px;
+    }
+    #restaurant-card {
+        width: 90%;
+    }
+    #dropdown2 {
+        width: 90%
+    }
+    #dropdown1 {
+        width: 90%;
+    }
+}
+
+/* Screens Resolution : 359px
+-------------------------------------------------------------------------- */
+@media only screen and (max-width: 359px) {
+	
+    .rest-div {
+        width: 100%;
+    }
+    #map_canvas {
+        margin-top: 60px;
+        background-color: aliceblue;
+    }
+    #directionsPanel {
+        width: 100%;
+    }
+    .gm-err-content {
+        margin-right: 5px;
+    }
+    #restaurant-card {
+        width: 90%;
+    }
+    #dropdown2 {
+        width: 90%
+    }
+    #dropdown1 {
+        width: 90%;
+    }
+}
+
+
+/* Screens Resolution : 290px
+-------------------------------------------------------------------------- */
+@media only screen and (max-width: 290px) {
+
+	#rest-div {
+        width: 100%;
+    }
+    #map_canvas {
+        margin-top: 60px;
+        background-color: aliceblue;
+    }
+    .gm-err-content {
+        margin-right: 5px;
+    }
+    #restaurant-card {
+        width: 90%;
+    }
+    #dropdown2 {
+        width: 90%
+    }
+    #dropdown1 {
+        width: 90%;
+    }
+}
+
+/* Screens Resolution : 290px
+-------------------------------------------------------------------------- */
+@media only screen and (max-width: 260px) {
+	
+    .rest-div {
+        width: 100%;
+    }
+    #map_canvas {
+        margin-top: 60px;
+        background-color: aliceblue;
+    }
+    .gm-err-content {
+        margin-right: 5px;
+    }
+    #restaurant-card {
+        width: 90%;
+    }
+    #dropdown2 {
+        width: 90%
+    }
+}

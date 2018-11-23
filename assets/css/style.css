@@ -92,10 +92,10 @@ body {
 
 .neonText {
   text-align: center;
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
   top: 50%;
-  transform: translateY(-50%);
+  /* transform: translateY(-50%); */
 }
 .neonText h1 {
   text-align: center; 
@@ -291,18 +291,18 @@ button {
 
 #search-btn {
     margin-top: 13px;
-    height: 25px;
+    /* height: 25px; */
     margin-left: 10px;
     margin: auto; 
 }
 
 .input-field {
-    width: 30% !important;
+    /* width: 30% !important; */
     margin-top: 15px;
 }
 
 #search-field {
-    display: flex;
+    /* display: flex; */
     /* justify-content: space-evenly; */
     text-align: center;
     flex-flow: row wrap;
@@ -369,6 +369,7 @@ form {
     color: #fff;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 55px #ff0080, 0 0 75px #ff0080;
     text-align: center;
+    cursor: pointer;
 } 
   
   /* #neon-button:hover h1 {

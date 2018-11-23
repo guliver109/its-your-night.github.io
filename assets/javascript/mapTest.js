@@ -3,7 +3,8 @@ $(document).ready(function () {
   var directionsService = new google.maps.DirectionsService();
   var geocoder = new google.maps.Geocoder();
   // var APIKey = "AIzaSyCVg7w_mohqdu3aS4yQWvgQELczpbIsXmw";
-  var APIKey = "AIzaSyBgYZmc-9EC6bHQmRI--_R6oSnPF1V4KtE";
+  // var APIKey = "AIzaSyBgYZmc-9EC6bHQmRI--_R6oSnPF1V4KtE"
+  var APIKey = "AIzaSyCusG7qCTTi_27_S4bZzkkkxtv56cd-Ack";
   //retrieving coordinates from localStorage
   var coord = localStorage.getItem("coordinates");
   //console.log(coord);
