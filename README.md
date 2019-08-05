@@ -21,7 +21,7 @@ Please check it out on https://itsyournight.herokuapp.com/
 Coding Languages used:
 <br>
 ![Portfolio About](assets/images/readmeImages/html1.png)
-![Portfolio About](assets/images/readmeImages/css2.png)
+![Portfolio About](assets/images/readmeImages/css2.jpg)
 ![Portfolio About](assets/images/readmeImages/materializeUI.png)
 ![Portfolio About](assets/images/readmeImages/jquery5.png)
 ![Portfolio About](assets/images/readmeImages/javascript3.png)
